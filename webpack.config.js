@@ -12,7 +12,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|build)/,
+        exclude: /(node_modules|build)/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -23,6 +23,6 @@ module.exports = {
     ]
   },
   externals: {
-    'styled-components': 'commonjs styled-components'
+    'styled-components': 'commonjs2 styled-components'
   }
 }
