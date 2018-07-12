@@ -14,11 +14,13 @@ export default styled.div`
   display: ${props => {
     if (props.inline) {
       if (props.block) return 'inline-block'
+      else if (props.grid) return 'inline-grid'
       else if (props.flex === true) return 'inline-flex'
       else return 'inline'
     } else {
       if (props.flex === true) return 'flex'
       if (props.block) return 'block'
+      if (props.grid) return 'grid'
       return 'flex'
     }
   }};
@@ -63,6 +65,8 @@ export default styled.div`
       `
     }
   }}
+
+  ${({ area }) => typeof area === 'string' && `grid-area: ${area};`}
 
   align-self: ${props => props.alignSelf || (() => {
     if (props.selfAuto) return 'auto'

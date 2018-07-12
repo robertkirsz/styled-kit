@@ -97,7 +97,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: ', ';\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n'], ['\n  display: ', ';\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n']),
+var _templateObject = _taggedTemplateLiteral(['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n'], ['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n        flex-direction: ', ';\n        flex-wrap: ', ';\n        justify-content: ', ';\n        align-items: ', ';\n        align-content: ', ';\n      '], ['\n        flex-direction: ', ';\n        flex-wrap: ', ';\n        justify-content: ', ';\n        align-items: ', ';\n        align-content: ', ';\n      ']),
     _templateObject3 = _taggedTemplateLiteral(['flex: ', ';'], ['flex: ', ';']),
     _templateObject4 = _taggedTemplateLiteral(['width: ', ';'], ['width: ', ';']),
@@ -132,10 +132,11 @@ var layerStyles = 'position: absolute; top: 0; right: 0; bottom: 0; left: 0;';
 
 exports.default = _styledComponents2.default.div(_templateObject, function (props) {
   if (props.inline) {
-    if (props.block) return 'inline-block';else if (props.flex === true) return 'inline-flex';else return 'inline';
+    if (props.block) return 'inline-block';else if (props.grid) return 'inline-grid';else if (props.flex === true) return 'inline-flex';else return 'inline';
   } else {
     if (props.flex === true) return 'flex';
     if (props.block) return 'block';
+    if (props.grid) return 'grid';
     return 'flex';
   }
 }, function (props) {
@@ -171,6 +172,9 @@ exports.default = _styledComponents2.default.div(_templateObject, function (prop
       return 'stretch';
     });
   }
+}, function (_ref) {
+  var area = _ref.area;
+  return typeof area === 'string' && 'grid-area: ' + area + ';';
 }, function (props) {
   return props.alignSelf || function () {
     if (props.selfAuto) return 'auto';
@@ -181,74 +185,74 @@ exports.default = _styledComponents2.default.div(_templateObject, function (prop
     if (props.selfStretch) return 'stretch';
     return 'auto';
   };
-}, function (_ref) {
-  var order = _ref.order;
-  return (0, _utils.isAlphaNumeric)(order) && 'order: ' + order + ';';
 }, function (_ref2) {
-  var flexNone = _ref2.flexNone,
-      flex = _ref2.flex;
+  var order = _ref2.order;
+  return (0, _utils.isAlphaNumeric)(order) && 'order: ' + order + ';';
+}, function (_ref3) {
+  var flexNone = _ref3.flexNone,
+      flex = _ref3.flex;
 
   if (flexNone) return 'flex: none;';
   if ((0, _utils.isAlphaNumeric)(flex)) return (0, _styledComponents.css)(_templateObject3, flex);
-}, function (_ref3) {
-  var absolute = _ref3.absolute,
-      relative = _ref3.relative;
+}, function (_ref4) {
+  var absolute = _ref4.absolute,
+      relative = _ref4.relative;
 
   if (absolute) return 'position: absolute;';
   if (relative) return 'position: relative;';
-}, _utils.createPosition, function (_ref4) {
-  var width = _ref4.width;
+}, _utils.createPosition, function (_ref5) {
+  var width = _ref5.width;
   return width && (0, _styledComponents.css)(_templateObject4, (0, _utils.withUnit)(width));
-}, function (_ref5) {
-  var height = _ref5.height;
-  return height && (0, _styledComponents.css)(_templateObject5, (0, _utils.withUnit)(height));
 }, function (_ref6) {
-  var minWidth = _ref6.minWidth;
-  return minWidth && (0, _styledComponents.css)(_templateObject6, (0, _utils.withUnit)(minWidth));
+  var height = _ref6.height;
+  return height && (0, _styledComponents.css)(_templateObject5, (0, _utils.withUnit)(height));
 }, function (_ref7) {
-  var minHeight = _ref7.minHeight;
-  return minHeight && (0, _styledComponents.css)(_templateObject7, (0, _utils.withUnit)(minHeight));
+  var minWidth = _ref7.minWidth;
+  return minWidth && (0, _styledComponents.css)(_templateObject6, (0, _utils.withUnit)(minWidth));
 }, function (_ref8) {
-  var maxWidth = _ref8.maxWidth;
-  return maxWidth && (0, _styledComponents.css)(_templateObject8, (0, _utils.withUnit)(maxWidth));
+  var minHeight = _ref8.minHeight;
+  return minHeight && (0, _styledComponents.css)(_templateObject7, (0, _utils.withUnit)(minHeight));
 }, function (_ref9) {
-  var maxHeight = _ref9.maxHeight;
-  return maxHeight && (0, _styledComponents.css)(_templateObject9, (0, _utils.withUnit)(maxHeight));
+  var maxWidth = _ref9.maxWidth;
+  return maxWidth && (0, _styledComponents.css)(_templateObject8, (0, _utils.withUnit)(maxWidth));
 }, function (_ref10) {
-  var fullHeight = _ref10.fullHeight;
-  return fullHeight && (0, _styledComponents.css)(_templateObject10);
+  var maxHeight = _ref10.maxHeight;
+  return maxHeight && (0, _styledComponents.css)(_templateObject9, (0, _utils.withUnit)(maxHeight));
 }, function (_ref11) {
-  var margin = _ref11.margin,
-      m = _ref11.m;
+  var fullHeight = _ref11.fullHeight;
+  return fullHeight && (0, _styledComponents.css)(_templateObject10);
+}, function (_ref12) {
+  var margin = _ref12.margin,
+      m = _ref12.m;
   return (margin || m) && (0, _styledComponents.css)(_templateObject11, (0, _utils.withUnit)(margin || m));
-}, (0, _utils.createSpaces)('margin'), function (_ref12) {
-  var padding = _ref12.padding,
-      p = _ref12.p;
+}, (0, _utils.createSpaces)('margin'), function (_ref13) {
+  var padding = _ref13.padding,
+      p = _ref13.p;
   return (padding || p) && (0, _styledComponents.css)(_templateObject12, (0, _utils.withUnit)(padding || p));
-}, (0, _utils.createSpaces)('padding'), function (_ref13) {
-  var z = _ref13.z;
+}, (0, _utils.createSpaces)('padding'), function (_ref14) {
+  var z = _ref14.z;
   return (0, _utils.isAlphaNumeric)(z) && (0, _styledComponents.css)(_templateObject13, z);
-}, _utils.createLists, function (_ref14) {
-  var layer = _ref14.layer;
+}, _utils.createLists, function (_ref15) {
+  var layer = _ref15.layer;
   return layer && layerStyles;
-}, function (_ref15) {
-  var square = _ref15.square;
-  return square && (0, _styledComponents.css)(_templateObject14, (0, _utils.withUnit)(square), (0, _utils.withUnit)(square));
 }, function (_ref16) {
-  var clickable = _ref16.clickable;
-  return clickable && 'cursor: pointer;';
+  var square = _ref16.square;
+  return square && (0, _styledComponents.css)(_templateObject14, (0, _utils.withUnit)(square), (0, _utils.withUnit)(square));
 }, function (_ref17) {
-  var noPointerEvents = _ref17.noPointerEvents;
-  return noPointerEvents && (0, _styledComponents.css)(_templateObject15);
+  var clickable = _ref17.clickable;
+  return clickable && 'cursor: pointer;';
 }, function (_ref18) {
-  var background = _ref18.background;
-  return background && (0, _styledComponents.css)(_templateObject16, background);
+  var noPointerEvents = _ref18.noPointerEvents;
+  return noPointerEvents && (0, _styledComponents.css)(_templateObject15);
 }, function (_ref19) {
-  var backgroundImage = _ref19.backgroundImage;
-  return backgroundImage && (0, _styledComponents.css)(_templateObject17, backgroundImage);
+  var background = _ref19.background;
+  return background && (0, _styledComponents.css)(_templateObject16, background);
 }, function (_ref20) {
-  var cover = _ref20.cover,
-      contain = _ref20.contain;
+  var backgroundImage = _ref20.backgroundImage;
+  return backgroundImage && (0, _styledComponents.css)(_templateObject17, backgroundImage);
+}, function (_ref21) {
+  var cover = _ref21.cover,
+      contain = _ref21.contain;
   return (cover || contain) && (0, _styledComponents.css)(_templateObject18, cover ? 'cover' : 'contain');
 }, function (props) {
   return props.overlay && (0, _styledComponents.css)(_templateObject19, props.absolute && 'absolute' || 'relative', layerStyles, props.overlay);
