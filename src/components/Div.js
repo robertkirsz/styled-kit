@@ -85,8 +85,9 @@ export default styled.div`
     if (isAlphaNumeric(flex)) return css`flex: ${flex};`
   }}
 
-  ${({ absolute, relative }) => {
+  ${({ absolute, fixed, relative }) => {
     if (absolute) return 'position: absolute;'
+    if (fixed) return 'position: fixed;'
     if (relative) return 'position: relative;'
   }}
 
@@ -118,11 +119,7 @@ export default styled.div`
 
   ${({ background }) => background && css`background: ${background};`}
   ${({ backgroundImage }) => backgroundImage && css`background-image: url(${backgroundImage});`}
-
-  ${({ cover, contain }) => (cover || contain) && css`
-    background-size: ${cover ? 'cover' : 'contain'};
-    background-position: center top;
-  `}
+  ${({ cover, contain }) => (cover || contain) && css`background-size: ${cover ? 'cover' : 'contain'};`}
 
   ${props => props.overlay && css`
     position: ${(props.absolute && 'absolute') || 'relative'};

@@ -97,7 +97,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n'], ['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n']),
+var _templateObject = _taggedTemplateLiteral(['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n'], ['\n  display: ', ';\n\n  ', '\n\n  ', '\n\n  align-self: ', ';\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n  ', '\n\n  ', '\n\n  ', '\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n        flex-direction: ', ';\n        flex-wrap: ', ';\n        justify-content: ', ';\n        align-items: ', ';\n        align-content: ', ';\n      '], ['\n        flex-direction: ', ';\n        flex-wrap: ', ';\n        justify-content: ', ';\n        align-items: ', ';\n        align-content: ', ';\n      ']),
     _templateObject3 = _taggedTemplateLiteral(['flex: ', ';'], ['flex: ', ';']),
     _templateObject4 = _taggedTemplateLiteral(['width: ', ';'], ['width: ', ';']),
@@ -114,7 +114,7 @@ var _templateObject = _taggedTemplateLiteral(['\n  display: ', ';\n\n  ', '\n\n 
     _templateObject15 = _taggedTemplateLiteral(['pointer-events: none;'], ['pointer-events: none;']),
     _templateObject16 = _taggedTemplateLiteral(['background: ', ';'], ['background: ', ';']),
     _templateObject17 = _taggedTemplateLiteral(['background-image: url(', ');'], ['background-image: url(', ');']),
-    _templateObject18 = _taggedTemplateLiteral(['\n    background-size: ', ';\n    background-position: center top;\n  '], ['\n    background-size: ', ';\n    background-position: center top;\n  ']),
+    _templateObject18 = _taggedTemplateLiteral(['background-size: ', ';'], ['background-size: ', ';']),
     _templateObject19 = _taggedTemplateLiteral(['\n    position: ', ';\n\n    &::after {\n      content: "";\n      ', '\n      background: ', ';\n      opacity: 0.2;\n      pointer-events: none;\n    }\n  '], ['\n    position: ', ';\n\n    &::after {\n      content: "";\n      ', '\n      background: ', ';\n      opacity: 0.2;\n      pointer-events: none;\n    }\n  ']),
     _templateObject20 = _taggedTemplateLiteral(['\n    transition: opacity 0.3s;\n    ', '\n  '], ['\n    transition: opacity 0.3s;\n    ', '\n  ']);
 
@@ -196,9 +196,11 @@ exports.default = _styledComponents2.default.div(_templateObject, function (prop
   if ((0, _utils.isAlphaNumeric)(flex)) return (0, _styledComponents.css)(_templateObject3, flex);
 }, function (_ref4) {
   var absolute = _ref4.absolute,
+      fixed = _ref4.fixed,
       relative = _ref4.relative;
 
   if (absolute) return 'position: absolute;';
+  if (fixed) return 'position: fixed;';
   if (relative) return 'position: relative;';
 }, _utils.createPosition, function (_ref5) {
   var width = _ref5.width;
