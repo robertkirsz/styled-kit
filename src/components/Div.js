@@ -1,15 +1,10 @@
 import styled, { css } from 'styled-components'
 
-import {
-  isAlphaNumeric,
-  withUnit,
-  createSpaces,
-  createPosition,
-  createLists
-} from '../utils'
+import { isAlphaNumeric, withUnit, createSpaces, createPosition, createLists } from '../utils'
 
 const layerStyles = 'position: absolute; top: 0; right: 0; bottom: 0; left: 0;'
 
+// prettier-ignore
 export default styled.div`
   display: ${props => {
     if (props.inline) {
@@ -35,7 +30,9 @@ export default styled.div`
           if (props.columnReverse) return 'column-reverse'
           return 'row'
         }};
+
         flex-wrap: ${props.wraps ? 'wrap' : 'nowrap'};
+
         justify-content: ${props.justifyContent || (() => {
           if (props.justifyStart) return 'flex-start'
           if (props.justifyEnd) return 'flex-end'
@@ -45,6 +42,7 @@ export default styled.div`
           if (props.justifyEvenly) return 'space-evenly'
           return 'flex-start'
         })};
+
         align-items: ${props.alignItems || (() => {
           if (props.itemsStart) return 'flex-start'
           if (props.itemsEnd) return 'flex-end'
@@ -53,6 +51,7 @@ export default styled.div`
           if (props.itemsStretch) return 'stretch'
           return 'stretch'
         })};
+
         align-content: ${props.alignContent || (() => {
           if (props.contentStart) return 'flex-start'
           if (props.contentEnd) return 'flex-end'

@@ -1,26 +1,58 @@
 {
   "name": "styled-kit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A styled-components component kit",
-  "main": "build/index.js",
-  "license": "MIT",
+  "main": "dist/index.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type" : "git",
+    "url" : "https://robert_kirsz@bitbucket.org/robert_kirsz/styled-kit.git"
+  },
   "author": {
     "name": "Robert Kirsz",
     "email": "robert.kirsz@gmail.com"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack"
+    "start": "webpack-dev-server --config ./webpack.dev.config.js --hot --port 3333",
+    "build": "webpack --config ./webpack.prod.config.js",
+    "lint": "eslint --fix src",
+    "prettier": "prettier './src/{**/*.js, *.js}' --write"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
-    "babel-cli": "6.26.x",
-    "babel-core": "6.26.x",
-    "babel-loader": "7.1.x",
-    "babel-preset-env": "1.6.x",
-    "webpack": "3.11.x"
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.14.0",
+    "react-hot-loader": "^4.3.4",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "peerDependencies": {
-    "react": "16.2.x",
-    "styled-components": "3.x.x"
+    "react": "^16.3.0",
+    "styled-components": "^3.0.0"
   }
 }
