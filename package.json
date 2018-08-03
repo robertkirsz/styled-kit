@@ -1,6 +1,6 @@
 {
   "name": "styled-kit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A styled-components component kit",
   "main": "src/index.js",
   "license": "UNLICENSED",
@@ -51,6 +51,7 @@
   },
   "peerDependencies": {
     "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "styled-components": "^3.0.0"
   }
 }
