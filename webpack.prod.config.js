@@ -6,7 +6,8 @@ const components = path.resolve(__dirname, 'src/components')
 module.exports = {
   mode: 'production',
   entry: {
-    Div: `${components}/Div`
+    Div: `${components}/Div`,
+    HeightTransition: `${components}/HeightTransition`
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

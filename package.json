@@ -2,12 +2,11 @@
   "name": "styled-kit",
   "version": "0.1.5",
   "description": "A styled-components component kit",
-  "main": "dist/index.js",
-  "private": true,
+  "main": "src/index.js",
   "license": "UNLICENSED",
   "repository": {
-    "type" : "git",
-    "url" : "https://robert_kirsz@bitbucket.org/robert_kirsz/styled-kit.git"
+    "type": "git",
+    "url": "https://robert_kirsz@bitbucket.org/robert_kirsz/styled-kit.git"
   },
   "author": {
     "name": "Robert Kirsz",
@@ -31,7 +30,6 @@
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",

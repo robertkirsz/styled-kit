@@ -15,12 +15,10 @@ const Row = Div.extend`
   ${media.mediumUp`
     margin-left: -12px;
     margin-right: -12px;
-  `}
-
-  ${media.largeUp`
+  `} ${media.largeUp`
     margin-left: -16px;
     margin-right: -16px;
-  `}
+  `};
 `
 
 Row.propTypes = {

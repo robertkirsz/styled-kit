@@ -6,8 +6,8 @@ import { media } from 'styles'
 import Div from './Div'
 
 const getSize = size => css`
-  flex-basis: ${100 / 12 * size}%;
-  max-width: ${100 / 12 * size}%;
+  flex-basis: ${(100 / 12) * size}%;
+  max-width: ${(100 / 12) * size}%;
 `
 
 const Col = Div.extend`
@@ -19,22 +19,22 @@ const Col = Div.extend`
   ${props => css`
     ${props.small === true && 'flex-basis: 100%;'}
     ${Number.isInteger(props.small) ? getSize(props.small) : ''}
-    ${Number.isInteger(props.offset) ? `margin-left: ${100 / 12 * props.offset}%;` : ''}
-    ${Number.isInteger(props.offsetSmall) ? `margin-left: ${100 / 12 * props.offsetSmall}%;` : ''}
+    ${Number.isInteger(props.offset) ? `margin-left: ${(100 / 12) * props.offset}%;` : ''}
+    ${Number.isInteger(props.offsetSmall) ? `margin-left: ${(100 / 12) * props.offsetSmall}%;` : ''}
   `}
 
   ${media.mediumUp`
     padding-left: 12px;
     padding-right: 12px;
     ${props => Number.isInteger(props.medium) && getSize(props.medium)}
-    ${props => Number.isInteger(props.offsetMedium) && `margin-left: ${100 / 12 * props.offsetMedium}%;`}
+    ${props => Number.isInteger(props.offsetMedium) && `margin-left: ${(100 / 12) * props.offsetMedium}%;`}
   `}
 
   ${media.largeUp`
     padding-left: 16px;
     padding-right: 16px;
     ${props => Number.isInteger(props.large) && getSize(props.large)}
-    ${props => Number.isInteger(props.offsetLarge) && `margin-left: ${100 / 12 * props.offsetLarge}%;`}
+    ${props => Number.isInteger(props.offsetLarge) && `margin-left: ${(100 / 12) * props.offsetLarge}%;`}
   `}
 `
 

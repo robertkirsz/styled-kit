@@ -10,35 +10,51 @@ class DivExample extends Component {
     return (
       <Wrapper grid>
         <Container justifyStart>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyCenter>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyEnd>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyAround>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyBetween>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyStart itemsStart>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyCenter itemsCenter>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
 
         <Container justifyEnd itemsEnd>
-          <Item /><Item /><Item />
+          <Item />
+          <Item />
+          <Item />
         </Container>
       </Wrapper>
     )
@@ -51,7 +67,6 @@ const Wrapper = styled(Div)`
   grid-template-columns: repeat(auto-fit, 300px);
   grid-auto-rows: 300px;
   grid-gap: 8px;
-  justify-content: center;
 `
 
 const Container = styled(Div)`

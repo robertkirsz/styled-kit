@@ -4,13 +4,6 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "babel-plugin-styled-components",
-    "react-hot-loader/babel",
-    [
-      "transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
+    "react-hot-loader/babel"
   ]
 }
