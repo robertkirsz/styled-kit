@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 
-import { media } from 'styles'
+import { screenSize } from '../styles'
 
 import Div from './Div'
 
+// prettier-ignore
 const Row = Div.extend`
   flex: 1 1 auto;
   flex-flow: ${props => (props.reverse ? 'row-reverse' : 'row')} wrap;
@@ -12,13 +13,17 @@ const Row = Div.extend`
   margin-right: -8px;
   padding: 0 8px;
 
-  ${media.mediumUp`
+  box-sizing: border-box;
+
+  ${screenSize.mediumUp`
     margin-left: -12px;
     margin-right: -12px;
-  `} ${media.largeUp`
+  `}
+
+  ${screenSize.largeUp`
     margin-left: -16px;
     margin-right: -16px;
-  `};
+  `}
 `
 
 Row.propTypes = {

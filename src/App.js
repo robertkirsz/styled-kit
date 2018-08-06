@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { hot } from 'react-hot-loader'
+
+import GridHelper from './helpers/GridHelper'
 
 import Div from './components/Div'
 import DivExample from './examples/DivExample'
+import GridExample from './examples/GridExample'
 import HeightTransitionExample from './examples/HeightTransitionExample'
 
 class App extends Component {
@@ -10,10 +13,14 @@ class App extends Component {
 
   render() {
     return (
-      <Div column listTop={16}>
-        <DivExample />
-        <HeightTransitionExample />
-      </Div>
+      <Fragment>
+        <GridHelper />
+        <Div column listTop={16}>
+          <GridExample />
+          <DivExample />
+          <HeightTransitionExample />
+        </Div>
+      </Fragment>
     )
   }
 }
