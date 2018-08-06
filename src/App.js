@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { hot } from 'react-hot-loader'
-
-import GridHelper from './helpers/GridHelper'
+import { injectGlobal } from 'styled-components'
 
 import Div from './components/Div'
 import DivExample from './examples/DivExample'
@@ -14,7 +13,6 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <GridHelper />
         <Div column listTop={16}>
           <GridExample />
           <DivExample />
@@ -26,3 +24,11 @@ class App extends Component {
 }
 
 export default hot(module)(App)
+
+// prettier-ignore
+injectGlobal`
+  body {
+    margin: 0;
+    font: 16px sans-serif;
+  }
+`

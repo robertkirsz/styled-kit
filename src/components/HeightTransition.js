@@ -52,9 +52,9 @@ export default class HeightTransition extends Component {
 
     return (
       <Wrapper {...props} isAnimating={isAnimating} style={{ ...style, height }}>
-        <div ref={this.childrenRef} style={contentStyle}>
+        <Content innerRef={this.childrenRef} style={contentStyle}>
           {children}
-        </div>
+        </Content>
       </Wrapper>
     )
   }
@@ -62,13 +62,21 @@ export default class HeightTransition extends Component {
 
 // prettier-ignore
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
   ${props => css`
     opacity: ${props.isActive ? 1 : 0};
     transition: all ${props.timeout}ms cubic-bezier(0.23, 1, 0.32, 1);
     ${(!props.isActive || props.isAnimating) && 'overflow: hidden;'}
 
-    > div {
+    background: pink;
+
+    > * {
       ${!props.isActive && 'pointer-events: none;'}
     }
   `}
 `
+
+// prettier-ignore
+const Content = styled.div``

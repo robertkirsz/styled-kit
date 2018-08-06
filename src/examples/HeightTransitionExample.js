@@ -15,9 +15,11 @@ class HeightTransitionExample extends Component {
     return (
       <Wrapper grid>
         <div>
-          <Button mBottom={8} onClick={() => this.setState({ show1: !this.state.show1 })}>Show</Button>
+          <Button mBottom={8} onClick={() => this.setState({ show1: !this.state.show1 })}>
+            Show
+          </Button>
 
-          <HeightTransition isActive={this.state.show1}>
+          <HeightTransition isActive={this.state.show1} debug>
             <Container column>
               <Item />
               <Item />
@@ -27,7 +29,9 @@ class HeightTransitionExample extends Component {
         </div>
 
         <div>
-          <Button mBottom={8} onClick={() => this.setState({ show2: !this.state.show2 })}>Show</Button>
+          <Button mBottom={8} onClick={() => this.setState({ show2: !this.state.show2 })}>
+            Show
+          </Button>
 
           <HeightTransition isActive={this.state.show2}>
             <Container column>
@@ -58,6 +62,7 @@ const Wrapper = styled(Div)`
 `
 
 const Container = styled(Div)`
+  background: powderblue;
   width: 300px;
 `
 

@@ -27,7 +27,7 @@ export default () => (
 // prettier-ignore
 const GridHelper = styled.div`
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
