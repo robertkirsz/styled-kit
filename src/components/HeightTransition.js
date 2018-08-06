@@ -65,7 +65,6 @@ const Wrapper = styled.div`
   ${props => css`
     opacity: ${props.isActive ? 1 : 0};
     transition: all ${props.timeout}ms cubic-bezier(0.23, 1, 0.32, 1);
-    background: pink;
     ${(!props.isActive || props.isAnimating) && 'overflow: hidden;'}
 
     > div {
