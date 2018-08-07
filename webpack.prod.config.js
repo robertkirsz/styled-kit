@@ -1,5 +1,4 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const components = path.resolve(__dirname, 'src/components')
 
@@ -10,7 +9,7 @@ module.exports = {
     HeightTransition: `${components}/HeightTransition`
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: __dirname,
     filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
@@ -28,6 +27,5 @@ module.exports = {
     react: 'commonjs2 react',
     'react-dom': 'commonjs2 react-dom',
     'styled-components': 'commonjs2 styled-components'
-  },
-  plugins: [new CleanWebpackPlugin('dist')]
+  }
 }

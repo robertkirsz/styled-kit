@@ -1,6 +1,6 @@
 {
   "name": "styled-kit",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A styled-components component kit",
   "main": "src/index.js",
   "license": "UNLICENSED",
@@ -33,7 +33,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.19",
     "eslint": "^5.2.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",

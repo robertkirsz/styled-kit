@@ -70,8 +70,6 @@ const Wrapper = styled.div`
     transition: all ${props.timeout}ms cubic-bezier(0.23, 1, 0.32, 1);
     ${(!props.isActive || props.isAnimating) && 'overflow: hidden;'}
 
-    background: pink;
-
     > * {
       ${!props.isActive && 'pointer-events: none;'}
     }
