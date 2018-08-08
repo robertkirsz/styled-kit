@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types'
-import { css } from 'styled-components'
-
-import { screenSize } from '../styles'
+import styled, { css } from 'styled-components'
 
 import Div from './Div'
 
@@ -11,7 +9,7 @@ const getSize = size => css`
 `
 
 // prettier-ignore
-const Col = Div.extend`
+const Col = styled(Div)`
   flex: 1 0 0;
   max-width: 100%;
   padding-left: 8px;
@@ -26,14 +24,14 @@ const Col = Div.extend`
     ${Number.isInteger(props.offsetSmall) ? `margin-left: ${(100 / 12) * props.offsetSmall}%;` : ''}
   `}
 
-  ${screenSize.mediumUp`
+  ${props => props.theme.queries.mediumUp`
     padding-left: 12px;
     padding-right: 12px;
     ${props => Number.isInteger(props.medium) && getSize(props.medium)}
     ${props => Number.isInteger(props.offsetMedium) && `margin-left: ${(100 / 12) * props.offsetMedium}%;`}
   `}
 
-  ${screenSize.largeUp`
+  ${props => props.theme.queries.largeUp`
     padding-left: 16px;
     padding-right: 16px;
     ${props => Number.isInteger(props.large) && getSize(props.large)}

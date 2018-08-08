@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-// import ScreenSizeInfo from '../helpers/ScreenSizeInfo'
+import ScreenSizeInfo from '../helpers/ScreenSizeInfo'
 import { withSizes } from '../providers/ScreenSizeProvider'
 import GridHelper from '../helpers/GridHelper'
 
@@ -14,11 +14,9 @@ class GridExample extends Component {
   state = {}
 
   render() {
-    console.log(this.props)
-
     return (
       <Wrapper column relative>
-        {/* <ScreenSizeInfo justifyCenter itemsCenter /> */}
+        <ScreenSizeInfo justifyCenter itemsCenter />
 
         <GridHelper />
 

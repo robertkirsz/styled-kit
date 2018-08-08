@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'styled-components'
 
 import isShallowEqual from '../utils/isShallowEqual'
 
@@ -9,20 +8,6 @@ const getSizeValues = sizes =>
     (result, size) => ({
       ...result,
       [size.name]: window.matchMedia(`only screen and ${size.value}`).matches
-    }),
-    {}
-  )
-
-const getQueries = sizes =>
-  sizes.reduce(
-    (result, query) => ({
-      ...result,
-      [query.name]: (...args) =>
-        css`
-          @media only screen and ${query.value} {
-            ${css(...args)};
-          }
-        `
     }),
     {}
   )
@@ -49,8 +34,7 @@ export default class ScreenSizeProvider extends Component {
   }
 
   state = {
-    sizes: getSizeValues(this.props.queries),
-    queries: getQueries(this.props.queries)
+    sizes: getSizeValues(this.props.queries)
   }
 
   componentDidMount = () => {
@@ -63,7 +47,7 @@ export default class ScreenSizeProvider extends Component {
 
   shouldComponentUpdate = (nextProps, nextState) => !isShallowEqual(this.state.sizes, nextState.sizes)
 
-  render = () => <Provider value={{ sizes: this.state.sizes, queries: this.state.queries }} {...this.props} />
+  render = () => <Provider value={{ sizes: this.state.sizes }} {...this.props} />
 }
 
 export const withSizes = Component => props => (

@@ -13,7 +13,7 @@
     "email": "robert.kirsz@gmail.com"
   },
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.dev.config.js --hot --port 3333",
+    "start": "webpack-dev-server --config ./webpack.dev.config.js --hot --port 3332",
     "build": "webpack --config ./webpack.prod.config.js",
     "lint": "eslint --fix src",
     "prettier": "prettier './src/{**/*.js, *.js}' --write"

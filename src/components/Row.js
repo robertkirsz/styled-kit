@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
-
-import { screenSize } from '../styles'
+import styled from 'styled-components'
 
 import Div from './Div'
 
 // prettier-ignore
-const Row = Div.extend`
+const Row = styled(Div)`
   flex: 1 1 auto;
   flex-flow: ${props => (props.reverse ? 'row-reverse' : 'row')} wrap;
 
@@ -15,12 +14,12 @@ const Row = Div.extend`
 
   box-sizing: border-box;
 
-  ${screenSize.mediumUp`
+  ${props => props.theme.queries.mediumUp`
     margin-left: -12px;
     margin-right: -12px;
   `}
 
-  ${screenSize.largeUp`
+  ${props => props.theme.queries.largeUp`
     margin-left: -16px;
     margin-right: -16px;
   `}

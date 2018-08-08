@@ -3,11 +3,13 @@ import { hot } from 'react-hot-loader'
 import { injectGlobal } from 'styled-components'
 
 import Div from './components/Div'
-import ScreenSizeProvider from './providers/ScreenSizeProvider'
+import MediaQueriesProvider from './providers/MediaQueriesProvider'
 
 import DivExample from './examples/DivExample'
 import GridExample from './examples/GridExample'
 import HeightTransitionExample from './examples/HeightTransitionExample'
+
+// TODO: check if themes merge when multiple ThemeProviders are used
 
 class App extends Component {
   state = {}
@@ -16,9 +18,9 @@ class App extends Component {
     return (
       <Fragment>
         <Div column listTop={16}>
-          <ScreenSizeProvider>
+          <MediaQueriesProvider>
             <GridExample />
-          </ScreenSizeProvider>
+          </MediaQueriesProvider>
 
           <DivExample />
 

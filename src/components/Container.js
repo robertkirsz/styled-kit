@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { screenSize } from '../styles'
-
 import Div from './Div'
 
 // prettier-ignore
@@ -14,8 +12,8 @@ const Container = styled(Div)`
 
   box-sizing: border-box;
 
-  ${screenSize.mediumUp`padding: 0 12px;`}
-  ${screenSize.largeUp`padding: 0 16px;`}
+  ${props => props.theme.queries.mediumUp`padding: 0 12px;`}
+  ${props => props.theme.queries.largeUp`padding: 0 16px;`}
 `
 
 export default Container
