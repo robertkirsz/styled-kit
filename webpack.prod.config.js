@@ -1,6 +1,7 @@
 const path = require('path')
 
 const components = path.resolve(__dirname, 'src/components')
+const providers = path.resolve(__dirname, 'src/providers')
 
 module.exports = {
   mode: 'production',
@@ -9,7 +10,9 @@ module.exports = {
     Container: `${components}/Container`,
     Row: `${components}/Row`,
     Col: `${components}/Col`,
-    HeightTransition: `${components}/HeightTransition`
+    HeightTransition: `${components}/HeightTransition`,
+    MediaQueriesProvider: `${providers}/MediaQueriesProvider`,
+    ScreenSizeProvider: `${providers}/ScreenSizeProvider`
   },
   output: {
     path: __dirname,
@@ -20,7 +23,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: components,
+        include: path.resolve(__dirname, 'src'),
         use: ['babel-loader']
       }
     ]

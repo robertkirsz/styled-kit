@@ -9,7 +9,7 @@ import DivExample from './examples/DivExample'
 import GridExample from './examples/GridExample'
 import HeightTransitionExample from './examples/HeightTransitionExample'
 
-// TODO: check if themes merge when multiple ThemeProviders are used
+const queries = [{ name: 'mediumUp', value: '(min-width: 640px)' }, { name: 'largeUp', value: '(min-width: 1024px)' }]
 
 class App extends Component {
   state = {}
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <Fragment>
         <Div column listTop={16}>
-          <MediaQueriesProvider>
+          <MediaQueriesProvider queries={queries}>
             <GridExample />
           </MediaQueriesProvider>
 

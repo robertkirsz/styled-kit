@@ -24,43 +24,43 @@ export default styled.div`
     if (!props.block || !(props.inline && !props.flex)) {
       return css`
         flex-direction: ${() => {
-          if (props.row) return 'row'
-          if (props.rowReverse) return 'row-reverse'
-          if (props.column) return 'column'
-          if (props.columnReverse) return 'column-reverse'
-          return 'row'
-        }};
+    if (props.row) return 'row'
+    if (props.rowReverse) return 'row-reverse'
+    if (props.column) return 'column'
+    if (props.columnReverse) return 'column-reverse'
+    return 'row'
+  }};
 
         flex-wrap: ${props.wraps ? 'wrap' : 'nowrap'};
 
         justify-content: ${props.justifyContent || (() => {
-          if (props.justifyStart) return 'flex-start'
-          if (props.justifyEnd) return 'flex-end'
-          if (props.justifyCenter) return 'center'
-          if (props.justifyBetween) return 'space-between'
-          if (props.justifyAround) return 'space-around'
-          if (props.justifyEvenly) return 'space-evenly'
-          return 'flex-start'
-        })};
+    if (props.justifyStart) return 'flex-start'
+    if (props.justifyEnd) return 'flex-end'
+    if (props.justifyCenter) return 'center'
+    if (props.justifyBetween) return 'space-between'
+    if (props.justifyAround) return 'space-around'
+    if (props.justifyEvenly) return 'space-evenly'
+    return 'flex-start'
+  })};
 
         align-items: ${props.alignItems || (() => {
-          if (props.itemsStart) return 'flex-start'
-          if (props.itemsEnd) return 'flex-end'
-          if (props.itemsCenter) return 'center'
-          if (props.itemsBaseline) return 'baseline'
-          if (props.itemsStretch) return 'stretch'
-          return 'stretch'
-        })};
+    if (props.itemsStart) return 'flex-start'
+    if (props.itemsEnd) return 'flex-end'
+    if (props.itemsCenter) return 'center'
+    if (props.itemsBaseline) return 'baseline'
+    if (props.itemsStretch) return 'stretch'
+    return 'stretch'
+  })};
 
         align-content: ${props.alignContent || (() => {
-          if (props.contentStart) return 'flex-start'
-          if (props.contentEnd) return 'flex-end'
-          if (props.contentCenter) return 'center'
-          if (props.contentBetween) return 'space-between'
-          if (props.contentArouns) return 'space-around'
-          if (props.contentStretch) return 'stretch'
-          return 'stretch'
-        })};
+    if (props.contentStart) return 'flex-start'
+    if (props.contentEnd) return 'flex-end'
+    if (props.contentCenter) return 'center'
+    if (props.contentBetween) return 'space-between'
+    if (props.contentArouns) return 'space-around'
+    if (props.contentStretch) return 'stretch'
+    return 'stretch'
+  })};
       `
     }
   }}
@@ -99,7 +99,7 @@ export default styled.div`
   ${({ maxWidth }) => maxWidth && css`max-width: ${withUnit(maxWidth)};`}
   ${({ maxHeight }) => maxHeight && css`max-height: ${withUnit(maxHeight)};`}
 
-  ${({ fullHeight }) => fullHeight && css`min-height: 100vh;` }
+  ${({ fullHeight }) => fullHeight && css`min-height: 100vh;`}
 
   ${({ margin, m }) => (margin || m) && css`margin: ${withUnit(margin || m)};`}
   ${createSpaces('margin')}

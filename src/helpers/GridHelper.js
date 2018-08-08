@@ -1,6 +1,4 @@
-// This is a grid overlay that can help you make sure everything is alligned
-// precisly with the 12-column grid layout we're using. You can turn it on by
-// uncommenting it in the `src/App.js`
+// This is a grid overlay that helps to make sure everything is alligned precisly with the 12-column grid layout.
 
 import React from 'react'
 import styled from 'styled-components'
