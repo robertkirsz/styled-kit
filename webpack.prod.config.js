@@ -6,6 +6,9 @@ module.exports = {
   mode: 'production',
   entry: {
     Div: `${components}/Div`,
+    Container: `${components}/Container`,
+    Row: `${components}/Row`,
+    Col: `${components}/Col`,
     HeightTransition: `${components}/HeightTransition`
   },
   output: {

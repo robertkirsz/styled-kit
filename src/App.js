@@ -3,6 +3,8 @@ import { hot } from 'react-hot-loader'
 import { injectGlobal } from 'styled-components'
 
 import Div from './components/Div'
+import ScreenSizeProvider from './providers/ScreenSizeProvider'
+
 import DivExample from './examples/DivExample'
 import GridExample from './examples/GridExample'
 import HeightTransitionExample from './examples/HeightTransitionExample'
@@ -14,8 +16,12 @@ class App extends Component {
     return (
       <Fragment>
         <Div column listTop={16}>
-          <GridExample />
+          <ScreenSizeProvider>
+            <GridExample />
+          </ScreenSizeProvider>
+
           <DivExample />
+
           <HeightTransitionExample />
         </Div>
       </Fragment>

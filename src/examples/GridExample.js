@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 // import ScreenSizeInfo from '../helpers/ScreenSizeInfo'
+import { withSizes } from '../providers/ScreenSizeProvider'
 import GridHelper from '../helpers/GridHelper'
 
 import Div from '../components/Div'
@@ -13,6 +14,8 @@ class GridExample extends Component {
   state = {}
 
   render() {
+    console.log(this.props)
+
     return (
       <Wrapper column relative>
         {/* <ScreenSizeInfo justifyCenter itemsCenter /> */}
@@ -43,13 +46,14 @@ class GridExample extends Component {
   }
 }
 
-export default GridExample
+export default withSizes(GridExample)
 
 // prettier-ignore
 const Wrapper = styled(Div)`
   padding: 24px 0;
 `
 
+// prettier-ignore
 const Item = styled.div`
   padding: 8px 8px 16px;
   background: rgba(255, 99, 71, 0.7);
