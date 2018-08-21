@@ -19,7 +19,7 @@ class HeightTransitionExample extends Component {
             Show
           </Button>
 
-          <HeightTransition isActive={this.state.show1} debug>
+          <HeightTransition isActive={this.state.show1}>
             <Container column>
               <Item />
               <Item />

@@ -2,7 +2,6 @@
   "name": "styled-kit",
   "version": "0.1.9",
   "description": "A styled-components component kit",
-  "main": "src/index.js",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
