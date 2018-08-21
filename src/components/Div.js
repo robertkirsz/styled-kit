@@ -22,60 +22,51 @@ export default styled.div`
 
   ${props => {
     if (!props.block || !(props.inline && !props.flex)) {
-      return css`
-        flex-direction: ${() => {
-    if (props.row) return 'row'
-    if (props.rowReverse) return 'row-reverse'
-    if (props.column) return 'column'
-    if (props.columnReverse) return 'column-reverse'
-    return 'row'
-  }};
+      let styles = ''
 
-        flex-wrap: ${props.wraps ? 'wrap' : 'nowrap'};
+      if (props.row) styles += 'flex-direction: row;'
+      if (props.rowReverse) styles += 'flex-direction: row-reverse;'
+      if (props.column) styles += 'flex-direction: column;'
+      if (props.columnReverse) styles += 'flex-direction: column-reverse;'
 
-        justify-content: ${props.justifyContent || (() => {
-    if (props.justifyStart) return 'flex-start'
-    if (props.justifyEnd) return 'flex-end'
-    if (props.justifyCenter) return 'center'
-    if (props.justifyBetween) return 'space-between'
-    if (props.justifyAround) return 'space-around'
-    if (props.justifyEvenly) return 'space-evenly'
-    return 'flex-start'
-  })};
+      if (props.justifyContent) styles += `justify-content: ${props.justifyContent};`
+      if (props.justifyStart) styles += 'justify-content: flex-start;'
+      if (props.justifyEnd) styles += 'justify-content: flex-end;'
+      if (props.justifyCenter) styles += 'justify-content: center;'
+      if (props.justifyBetween) styles += 'justify-content: space-between;'
+      if (props.justifyAround) styles += 'justify-content: space-around;'
+      if (props.justifyEvenly) styles += 'justify-content: space-evenly;'
 
-        align-items: ${props.alignItems || (() => {
-    if (props.itemsStart) return 'flex-start'
-    if (props.itemsEnd) return 'flex-end'
-    if (props.itemsCenter) return 'center'
-    if (props.itemsBaseline) return 'baseline'
-    if (props.itemsStretch) return 'stretch'
-    return 'stretch'
-  })};
+      if (props.alignItems) styles += `align-items: ${props.alignItems};`
+      if (props.itemsStart) styles += 'align-items: flex-start;'
+      if (props.itemsEnd) styles += 'align-items: flex-end;'
+      if (props.itemsCenter) styles += 'align-items: center;'
+      if (props.itemsBaseline) styles += 'align-items: baseline;'
+      if (props.itemsStretch) styles += 'align-items: stretch;'
 
-        align-content: ${props.alignContent || (() => {
-    if (props.contentStart) return 'flex-start'
-    if (props.contentEnd) return 'flex-end'
-    if (props.contentCenter) return 'center'
-    if (props.contentBetween) return 'space-between'
-    if (props.contentArouns) return 'space-around'
-    if (props.contentStretch) return 'stretch'
-    return 'stretch'
-  })};
-      `
+      if (props.alignContent) styles += `align-content: ${props.alignContent};`
+      if (props.contentStart) styles += 'align-content: flex-start;'
+      if (props.contentEnd) styles += 'align-content: flex-end;'
+      if (props.contentCenter) styles += 'align-content: center;'
+      if (props.contentBetween) styles += 'align-content: space-between;'
+      if (props.contentArouns) styles += 'align-content: space-around;'
+      if (props.contentStretch) styles += 'align-content: stretch;'
+
+      if (props.alignSelf) styles += `align-self: ${props.alignSelf};`
+      if (props.selfAuto) styles += 'align-self: auto;'
+      if (props.selfStart) styles += 'align-self: flex-start;'
+      if (props.selfEnd) styles += 'align-self: flex-end;'
+      if (props.selfCenter) styles += 'align-self: center;'
+      if (props.selfBaseline) styles += 'align-self: baseline;'
+      if (props.selfStretch) styles += 'align-self: stretch;'
+
+      return styles
     }
   }}
 
-  ${({ area }) => typeof area === 'string' && `grid-area: ${area};`}
+  ${props => props.wraps && 'flex-wrap: wrap;'}
 
-  align-self: ${props => props.alignSelf || (() => {
-    if (props.selfAuto) return 'auto'
-    if (props.selfStart) return 'flex-start'
-    if (props.selfEnd) return 'flex-end'
-    if (props.selfCenter) return 'center'
-    if (props.selfBaseline) return 'baseline'
-    if (props.selfStretch) return 'stretch'
-    return 'auto'
-  })};
+  ${({ area }) => typeof area === 'string' && `grid-area: ${area};`}
 
   ${({ order }) => isAlphaNumeric(order) && `order: ${order};`}
 

@@ -39,19 +39,25 @@ class DivExample extends Component {
           <Item />
         </Container>
 
-        <Container justifyStart itemsStart>
+        <Container itemsStart>
           <Item />
           <Item />
           <Item />
         </Container>
 
-        <Container justifyCenter itemsCenter>
+        <Container itemsCenter>
           <Item />
           <Item />
           <Item />
         </Container>
 
-        <Container justifyEnd itemsEnd>
+        <Container itemsEnd>
+          <Item />
+          <Item />
+          <Item />
+        </Container>
+
+        <Container itemsStretch>
           <Item />
           <Item />
           <Item />
