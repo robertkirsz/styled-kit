@@ -19,23 +19,19 @@ const Col = styled(Div)`
 
   ${props => css`
     ${props.small === true && 'flex-basis: 100%;'}
-    ${Number.isInteger(props.small) ? getSize(props.small) : ''}
-    ${Number.isInteger(props.offset) ? `margin-left: ${(100 / 12) * props.offset}%;` : ''}
-    ${Number.isInteger(props.offsetSmall) ? `margin-left: ${(100 / 12) * props.offsetSmall}%;` : ''}
+    ${Number.isInteger(props.small) && getSize(props.small)}
+    ${Number.isInteger(props.offset) && `margin-left: ${(100 / 12) * props.offset}%;`}
+    ${Number.isInteger(props.offsetSmall) && `margin-left: ${(100 / 12) * props.offsetSmall}%;`}
   `}
 
   ${props => props.theme.queries.mediumUp`
-    padding-left: 12px;
-    padding-right: 12px;
-    ${props => Number.isInteger(props.medium) && getSize(props.medium)}
-    ${props => Number.isInteger(props.offsetMedium) && `margin-left: ${(100 / 12) * props.offsetMedium}%;`}
+    ${Number.isInteger(props.medium) && getSize(props.medium)}
+    ${Number.isInteger(props.offsetMedium) && `margin-left: ${(100 / 12) * props.offsetMedium}%;`}
   `}
 
   ${props => props.theme.queries.largeUp`
-    padding-left: 16px;
-    padding-right: 16px;
-    ${props => Number.isInteger(props.large) && getSize(props.large)}
-    ${props => Number.isInteger(props.offsetLarge) && `margin-left: ${(100 / 12) * props.offsetLarge}%;`}
+    ${Number.isInteger(props.large) && getSize(props.large)}
+    ${Number.isInteger(props.offsetLarge) && `margin-left: ${(100 / 12) * props.offsetLarge}%;`}
   `}
 `
 
