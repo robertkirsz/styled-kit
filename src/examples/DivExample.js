@@ -1,77 +1,71 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Div from '../components/Div'
 
-class DivExample extends Component {
-  state = {}
+const DivExample = props => (
+  <Wrapper grid {...props}>
+    <Container justifyStart>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-  render() {
-    return (
-      <Wrapper grid>
-        <Container justifyStart>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container justifyCenter>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container justifyCenter>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container justifyEnd>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container justifyEnd>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container justifyAround>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container justifyAround>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container justifyBetween>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container justifyBetween>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container itemsStart>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container itemsStart>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container itemsCenter>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container itemsCenter>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
+    <Container itemsEnd>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
 
-        <Container itemsEnd>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
-
-        <Container itemsStretch>
-          <Item />
-          <Item />
-          <Item />
-        </Container>
-      </Wrapper>
-    )
-  }
-}
+    <Container itemsStretch>
+      <Item />
+      <Item />
+      <Item />
+    </Container>
+  </Wrapper>
+)
 
 export default DivExample
 
 const Wrapper = styled(Div)`
-  grid-template-columns: repeat(auto-fit, 300px);
-  grid-auto-rows: 300px;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-auto-rows: 150px;
   grid-gap: 8px;
 `
 
@@ -81,8 +75,8 @@ const Container = styled(Div)`
 `
 
 const Item = styled(Div)`
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   background: tomato;
   margin: 4px;
 `

@@ -76,5 +76,4 @@ const Wrapper = styled.div`
   `}
 `
 
-// prettier-ignore
 const Content = styled.div``

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import ScreenSizeInfo from '../helpers/ScreenSizeInfo'
@@ -10,50 +10,39 @@ import Container from '../components/Container'
 import Row from '../components/Row'
 import Col from '../components/Col'
 
-class GridExample extends Component {
-  state = {}
+const GridExample = props => (
+  <Div column relative padding="24px 0" {...props}>
+    <ScreenSizeInfo justifyCenter itemsCenter />
 
-  render() {
-    return (
-      <Wrapper column relative>
-        <ScreenSizeInfo justifyCenter itemsCenter />
+    <GridHelper />
 
-        <GridHelper />
+    <Container>
+      <Row>
+        <Col small={12} medium={4} large={3}>
+          <Item>Small 12 Medium 4 Large 3</Item>
+        </Col>
 
-        <Container>
-          <Row>
-            <Col small={12} medium={4} large={3}>
-              <Item>Small 12 Medium 4 Large 3</Item>
-            </Col>
+        <Col small={12} medium={4} large={3}>
+          <Item>Small 12 Medium 4 Large 3</Item>
+        </Col>
 
-            <Col small={12} medium={4} large={3}>
-              <Item>Small 12 Medium 4 Large 3</Item>
-            </Col>
+        <Col small={12} medium={4} large={3}>
+          <Item>Small 12 Medium 4 Large 3</Item>
+        </Col>
 
-            <Col small={12} medium={4} large={3}>
-              <Item>Small 12 Medium 4 Large 3</Item>
-            </Col>
-
-            <Col small={12} medium={12} large={3}>
-              <Item>Small 12 Medium 12 Large 3</Item>
-            </Col>
-          </Row>
-        </Container>
-      </Wrapper>
-    )
-  }
-}
+        <Col small={12} medium={12} large={3}>
+          <Item>Small 12 Medium 12 Large 3</Item>
+        </Col>
+      </Row>
+    </Container>
+  </Div>
+)
 
 export default withSizes(GridExample)
 
-// prettier-ignore
-const Wrapper = styled(Div)`
-  padding: 24px 0;
-`
-
-// prettier-ignore
 const Item = styled.div`
-  padding: 8px 8px 16px;
+  padding: 8px;
+  margin-bottom: 8px;
   background: rgba(255, 99, 71, 0.7);
   border: 2px solid tomato;
   width: 100%;
