@@ -52,9 +52,9 @@ export default class HeightTransition extends Component {
 
     return (
       <Wrapper {...props} isAnimating={isAnimating} style={{ ...style, height }}>
-        <Content innerRef={this.childrenRef} style={contentStyle}>
+        <div ref={this.childrenRef} style={contentStyle}>
           {children}
-        </Content>
+        </div>
       </Wrapper>
     )
   }
@@ -75,5 +75,3 @@ const Wrapper = styled.div`
     }
   `}
 `
-
-const Content = styled.div``

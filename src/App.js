@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { hot } from 'react-hot-loader'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 import Div from './components/Div'
 import MediaQueriesProvider from './providers/MediaQueriesProvider'
@@ -26,6 +26,8 @@ class App extends Component {
 
           <HeightTransitionExample />
         </Div>
+
+        <GlobalStyles />
       </Fragment>
     )
   }
@@ -33,8 +35,7 @@ class App extends Component {
 
 export default hot(module)(App)
 
-// prettier-ignore
-injectGlobal`
+const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     font: 16px sans-serif;
