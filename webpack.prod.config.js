@@ -20,13 +20,7 @@ module.exports = {
     libraryTarget: 'commonjs2'
   },
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        use: ['babel-loader']
-      }
-    ]
+    rules: [{ test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' }]
   },
   externals: {
     'prop-types': 'commonjs2 prop-types',

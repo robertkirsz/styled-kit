@@ -2,16 +2,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
+  devServer: {
+    host: '0.0.0.0', // Allows access from external devices
+    port: 3333
+  },
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
+    rules: [{ test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' }]
   },
   plugins: [
     new HtmlWebPackPlugin({
