@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import Div from './Div'
 
-// prettier-ignore
 const Container = styled(Div)`
   width: 100%;
   max-width: 1280px;

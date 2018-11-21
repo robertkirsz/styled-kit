@@ -8,6 +8,16 @@ const getSize = size => css`
   max-width: ${(100 / 12) * size}%;
 `
 
+const propTypes = {
+  small: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  medium: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  large: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  offset: PropTypes.number,
+  offsetSmall: PropTypes.number,
+  offsetMedium: PropTypes.number,
+  offsetLarge: PropTypes.number
+}
+
 // prettier-ignore
 const Col = styled(Div)`
   flex: 1 0 0;
@@ -17,32 +27,23 @@ const Col = styled(Div)`
 
   box-sizing: border-box;
 
-  ${props => css`
-    ${props.small === true && 'flex-basis: 100%;'}
-    ${Number.isInteger(props.small) && getSize(props.small)}
-    ${Number.isInteger(props.offset) && `margin-left: ${(100 / 12) * props.offset}%;`}
-    ${Number.isInteger(props.offsetSmall) && `margin-left: ${(100 / 12) * props.offsetSmall}%;`}
-  `}
+  ${({ small, offsetSmall, medium, offsetMedium, large, offsetLarge, theme }) => css`
+    ${small === true && 'flex-basis: 100%;'}
+    ${Number.isInteger(small) && getSize(small)}
+    ${Number.isInteger(offsetSmall) && `margin-left: ${(100 / 12) * offsetSmall}%;`}
 
-  ${props => props.theme.queries.mediumUp`
-    ${Number.isInteger(props.medium) && getSize(props.medium)}
-    ${Number.isInteger(props.offsetMedium) && `margin-left: ${(100 / 12) * props.offsetMedium}%;`}
-  `}
+    ${theme.queries.mediumUp`
+      ${Number.isInteger(medium) && getSize(medium)}
+      ${Number.isInteger(offsetMedium) && `margin-left: ${(100 / 12) * offsetMedium}%;`}
+    `}
 
-  ${props => props.theme.queries.largeUp`
-    ${Number.isInteger(props.large) && getSize(props.large)}
-    ${Number.isInteger(props.offsetLarge) && `margin-left: ${(100 / 12) * props.offsetLarge}%;`}
+    ${theme.queries.largeUp`
+      ${Number.isInteger(large) && getSize(large)}
+      ${Number.isInteger(offsetLarge) && `margin-left: ${(100 / 12) * offsetLarge}%;`}
+    `}
   `}
 `
 
-Col.propTypes = {
-  small: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  medium: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  large: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  offset: PropTypes.number,
-  offsetSmall: PropTypes.number,
-  offsetMedium: PropTypes.number,
-  offsetLarge: PropTypes.number
-}
+Col.propTypes = propTypes
 
 export default Col

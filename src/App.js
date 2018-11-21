@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import { hot } from 'react-hot-loader'
 import { createGlobalStyle } from 'styled-components'
 
@@ -11,27 +11,21 @@ import HeightTransitionExample from './examples/HeightTransitionExample'
 
 const queries = [{ name: 'mediumUp', value: '(min-width: 640px)' }, { name: 'largeUp', value: '(min-width: 1024px)' }]
 
-class App extends Component {
-  state = {}
+const App = () => (
+  <>
+    <Div column listTop={16}>
+      <MediaQueriesProvider queries={queries}>
+        <GridExample />
+      </MediaQueriesProvider>
 
-  render() {
-    return (
-      <Fragment>
-        <Div column listTop={16}>
-          <MediaQueriesProvider queries={queries}>
-            <GridExample />
-          </MediaQueriesProvider>
+      <DivExample />
 
-          <DivExample />
+      <HeightTransitionExample />
+    </Div>
 
-          <HeightTransitionExample />
-        </Div>
-
-        <GlobalStyles />
-      </Fragment>
-    )
-  }
-}
+    <GlobalStyles />
+  </>
+)
 
 export default hot(module)(App)
 
