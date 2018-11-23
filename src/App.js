@@ -8,6 +8,7 @@ import MediaQueriesProvider from './providers/MediaQueriesProvider'
 import DivExample from './examples/DivExample'
 import GridExample from './examples/GridExample'
 import HeightTransitionExample from './examples/HeightTransitionExample'
+import SliderExample from './examples/SliderExample'
 
 const queries = [{ name: 'mediumUp', value: '(min-width: 640px)' }, { name: 'largeUp', value: '(min-width: 1024px)' }]
 
@@ -21,6 +22,8 @@ const App = () => (
       <DivExample />
 
       <HeightTransitionExample />
+
+      <SliderExample />
     </Div>
 
     <GlobalStyles />

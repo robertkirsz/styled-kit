@@ -11,6 +11,7 @@ module.exports = {
     Row: `${components}/Row`,
     Col: `${components}/Col`,
     HeightTransition: `${components}/HeightTransition`,
+    Slider: `${components}/Slider`,
     MediaQueriesProvider: `${providers}/MediaQueriesProvider`,
     ScreenSizeProvider: `${providers}/ScreenSizeProvider`
   },

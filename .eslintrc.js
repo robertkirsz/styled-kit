@@ -28,7 +28,6 @@ module.exports = {
     'no-alert': 'error',
 
     /* ES 6 */
-    'no-confusing-arrow': ['error', { allowParens: true }],
     'prefer-template': 'off',
     'no-var': 'error',
 
@@ -38,6 +37,7 @@ module.exports = {
     'no-lonely-if': 'error',
     camelcase: 'off',
     'no-multiple-empty-lines': 'warn',
+    'object-curly-spacing': 'warn',
 
     /* React */
     'react/jsx-no-undef': 'error',
