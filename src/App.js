@@ -1,5 +1,4 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
 import { createGlobalStyle } from 'styled-components'
 
 import Div from './components/Div'
@@ -30,7 +29,7 @@ const App = () => (
   </>
 )
 
-export default hot(module)(App)
+export default App
 
 const GlobalStyles = createGlobalStyle`
   body {

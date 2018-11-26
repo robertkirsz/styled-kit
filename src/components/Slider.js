@@ -30,6 +30,7 @@ export default class Slider extends Component {
 
   slideHeights = []
 
+  // TODO: no unused var prevState
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.activeSlide !== this.props.activeSlide) {
       this.doubleUpdate('height', this.slideHeights[prevProps.activeSlide], this.slideHeights[this.props.activeSlide])
@@ -60,6 +61,7 @@ export default class Slider extends Component {
       opacity: isActive ? 1 : 0,
       position: !isActive && 'absolute',
       pointerEvents: !isActive && 'none',
+      // height: !isActive && this.slideHeights[index],
       transform: `translate3d(${isPrevious ? '-100%' : isNext ? '100%' : 0}, 0, 0)`,
       transition: `all ${this.props.duration}ms cubic-bezier(0.23, 1, 0.32, 1)`
     }
@@ -70,7 +72,7 @@ export default class Slider extends Component {
   }
 
   render() {
-    const { duration, alignTop, alignBottom, children } = this.props
+    const { activeSlide, heightProperty, duration, alignTop, alignBottom, children, ...props } = this.props
     const { height } = this.state
 
     return (
@@ -80,6 +82,7 @@ export default class Slider extends Component {
         alignTop={alignTop}
         alignBottom={alignBottom}
         style={{ height }}
+        {...props}
       >
         {Children.toArray(children).map(this.takeCareOfChildren)}
       </Wrapper>
@@ -89,12 +92,12 @@ export default class Slider extends Component {
 
 // prettier-ignore
 const Wrapper = styled.div`
-  position: relative;
-  background: gray;
-
   display: flex;
   align-items: ${({ alignTop, alignBottom }) => (alignTop ? 'flex-start' : alignBottom ? 'flex-end' : 'center')};
   justify-content: center;
 
-  transition: height ${({ duration }) => duration}ms cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  /* overflow: hidden; */
+
+  transition: height ${({ duration }) => duration}ms ease-out;
 `

@@ -14,7 +14,6 @@ module.exports = {
     'no-prototype-builtins': 'off',
     'valid-jsdoc': 'off',
     'no-mixed-operators': 'off',
-    'no-unused-vars': ['error', { vars: 'all', args: 'none', ignoreRestSiblings: false }],
     'no-unused-expressions': 'off',
     semi: ['warn', 'never'],
     'space-before-function-paren': 'off',
@@ -100,5 +99,8 @@ module.exports = {
     'import/first': 'off',
     'import/no-webpack-loader-syntax': 'off',
     'import/export': 'off'
+
+    // MINE
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }]
   }
 }
