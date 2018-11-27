@@ -6,7 +6,7 @@ import Slider from '../components/Slider'
 class SliderExample extends Component {
   state = { activeSlide: 0 }
 
-  goTo = activeSlide => event => this.setState({ activeSlide })
+  goTo = activeSlide => () => this.setState({ activeSlide })
 
   render() {
     return (

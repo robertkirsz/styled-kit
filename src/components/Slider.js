@@ -30,8 +30,7 @@ export default class Slider extends Component {
 
   slideHeights = []
 
-  // TODO: no unused var prevState
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.activeSlide !== this.props.activeSlide) {
       this.doubleUpdate('height', this.slideHeights[prevProps.activeSlide], this.slideHeights[this.props.activeSlide])
     }
@@ -40,10 +39,10 @@ export default class Slider extends Component {
   doubleUpdate = (key, firstValue, secondValue) =>
     this.setState({ [key]: firstValue }, () => {
       this.setState({ [key]: secondValue })
-      setTimeout(() => this.handleTransitionEnd(), this.props.duration)
+      setTimeout(this.handleTransitionEnd, this.props.duration)
     })
 
-  handleTransitionEnd = () => this.setState(({ height }) => ({ height: !height ? 0 : 'auto' }))
+  handleTransitionEnd = () => this.setState({ height: 'auto' })
 
   setRef = (node, index) => {
     if (node === null) return
@@ -61,7 +60,6 @@ export default class Slider extends Component {
       opacity: isActive ? 1 : 0,
       position: !isActive && 'absolute',
       pointerEvents: !isActive && 'none',
-      // height: !isActive && this.slideHeights[index],
       transform: `translate3d(${isPrevious ? '-100%' : isNext ? '100%' : 0}, 0, 0)`,
       transition: `all ${this.props.duration}ms cubic-bezier(0.23, 1, 0.32, 1)`
     }
@@ -97,7 +95,7 @@ const Wrapper = styled.div`
   justify-content: center;
 
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 
   transition: height ${({ duration }) => duration}ms ease-out;
 `
