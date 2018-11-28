@@ -22,7 +22,7 @@ class SliderExample extends Component {
           <button onClick={this.goTo(3)}>4</button>
         </Div>
 
-        <Slider activeSlide={this.state.activeSlide} {...this.props}>
+        <Slider activeSlide={this.state.activeSlide} changeSlideCallback={console.log} {...this.props}>
           <Div column background="tomato" padding={16}>
             <h1>Hey!</h1>
             <h2>This is Slider!</h2>
