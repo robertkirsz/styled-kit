@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-testing-library'
 
-import CopyProvider, { Copy, parseValues } from 'providers/CopyProvider'
+import CopyProvider, { withCopy, Copy, parseValues } from 'providers/CopyProvider'
 
 const en = {
   hello: 'Hello!',
@@ -15,6 +15,18 @@ describe('<CopyProvider />', () => {
     const { container } = render(
       <CopyProvider copy={en}>
         <Copy id="hello" />
+      </CopyProvider>
+    )
+
+    expect(container).toHaveTextContent('Hello!')
+  })
+
+  test('Provides copy for withCopy HOC', () => {
+    const WithCopy = withCopy(props => props.copy.hello)
+
+    const { container } = render(
+      <CopyProvider copy={en}>
+        <WithCopy />
       </CopyProvider>
     )
 

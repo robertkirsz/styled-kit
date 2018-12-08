@@ -88,4 +88,28 @@ describe('<Slider />', () => {
       expect(mockCallback.mock.calls[1][0]).toBe(2)
     })
   })
+
+  test('Can be aligned in three ways', () => {
+    const { getByTestId } = render(
+      <>
+        <Slider data-testid="slider-center">
+          <div>Slide</div>
+        </Slider>
+        <Slider data-testid="slider-top" alignTop>
+          <div>Slide</div>
+        </Slider>
+        <Slider data-testid="slider-bottom" alignBottom>
+          <div>Slide</div>
+        </Slider>
+      </>
+    )
+
+    const alignCenterSlider = getByTestId('slider-center')
+    const alignTopSlider = getByTestId('slider-top')
+    const alignBottomSlider = getByTestId('slider-bottom')
+
+    expect(alignCenterSlider).toHaveStyle('align-items: center;')
+    expect(alignTopSlider).toHaveStyle('align-items: flex-start;')
+    expect(alignBottomSlider).toHaveStyle('align-items: flex-end;')
+  })
 })
