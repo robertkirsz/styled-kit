@@ -13,7 +13,8 @@ module.exports = {
     HeightTransition: `${components}/HeightTransition`,
     Slider: `${components}/Slider`,
     MediaQueriesProvider: `${providers}/MediaQueriesProvider`,
-    ScreenSizeProvider: `${providers}/ScreenSizeProvider`
+    ScreenSizeProvider: `${providers}/ScreenSizeProvider`,
+    CopyProvider: `${providers}/CopyProvider`
   },
   output: {
     path: __dirname,
