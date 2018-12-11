@@ -1,6 +1,6 @@
 {
   "name": "styled-kit",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A components kit for React based on styled-components",
   "license": "UNLICENSED",
   "repository": {
@@ -39,7 +39,7 @@
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
-    "babel-plugin-styled-components": "1.9.2",
+    "babel-plugin-styled-components": "1.9.4",
     "eslint": "5.10.0",
     "eslint-config-react-app": "3.0.5",
     "eslint-plugin-babel": "5.3.0",
@@ -51,7 +51,7 @@
     "jest": "23.6.0",
     "jest-dom": "3.0.0",
     "prettier": "1.15.3",
-    "react-testing-library": "5.3.1",
+    "react-testing-library": "5.3.2",
     "webpack": "4.27.1",
     "webpack-cli": "3.1.2",
     "webpack-dev-server": "3.1.10"
