@@ -37,6 +37,21 @@ const stuff = {
   selfCenter: 'align-self: center;',
   selfBaseline: 'align-self: baseline;',
   selfStretch: 'align-self: stretch;',
+  layer: layerStyles,
+  top: value => `top: ${withUnit(value)};`,
+  right: value => `right: ${withUnit(value)};`,
+  bottom: value => `bottom: ${withUnit(value)};`,
+  left: value => `left: ${withUnit(value)};`,
+  margin: value => `margin: ${withUnit(value)};`,
+  marginTop: value => `margin-top: ${withUnit(value)};`,
+  marginRight: value => `margin-right: ${withUnit(value)};`,
+  marginBottom: value => `margin-bottom: ${withUnit(value)};`,
+  marginLeft: value => `margin-left: ${withUnit(value)};`,
+  padding: value => `padding: ${withUnit(value)};`,
+  paddingTop: value => `padding-top: ${withUnit(value)};`,
+  paddingRight: value => `padding-right: ${withUnit(value)};`,
+  paddingBottom: value => `padding-bottom: ${withUnit(value)};`,
+  paddingLeft: value => `padding-left: ${withUnit(value)};`,
   listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value)}; }`,
   listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value)}; }`,
   listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value)}; }`,
@@ -143,7 +158,7 @@ export default styled.div`
     }
   }}
 
-  ${props => props.wraps && 'flex-wrap: wrap;'}
+  ${({ wraps }) => wraps && 'flex-wrap: wrap;'}
 
   ${({ area }) => typeof area === 'string' && `grid-area: ${area};`}
 
@@ -190,22 +205,24 @@ export default styled.div`
   ${({ backgroundImage }) => backgroundImage && css`background-image: url(${backgroundImage});`}
   ${({ cover, contain }) => (cover || contain) && css`background-size: ${cover ? 'cover' : 'contain'};`}
 
-  ${props => props.overlay && css`
-    position: ${(props.absolute && 'absolute') || 'relative'};
+  ${({ overlay, absolute }) => overlay && css`
+    position: ${(absolute && 'absolute') || 'relative'};
 
     &::after {
       content: "";
       ${layerStyles}
-      background: ${props.overlay};
+      background: ${overlay};
       opacity: 0.2;
       pointer-events: none;
     }
   `}
 
-  ${props => props.visible !== undefined && css`
+  ${({ visible }) => visible !== undefined && css`
     transition: opacity 0.3s;
-    ${props.visible === false && 'opacity: 0;'}
+    ${visible === false && 'opacity: 0;'}
   `}
+
+  ${({ hide }) => hide && 'display: none;'}
 
   ${doMediaQueriesStuff}
 `
