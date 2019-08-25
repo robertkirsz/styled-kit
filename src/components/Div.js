@@ -1,8 +1,86 @@
 import styled, { css } from 'styled-components'
 
-import { isAlphaNumeric, withUnit, createSpaces, createPosition, createLists } from '../utils'
+import { hasValue, isAlphaNumeric, withUnit, createSpaces, createPosition, createLists, camelToKebab } from '../utils'
 
 const layerStyles = 'position: absolute; top: 0; right: 0; bottom: 0; left: 0;'
+
+const stuff = {
+  absolute: 'position: absolute;',
+  fixed: 'position: fixed;',
+  relative: 'position: relative;',
+  flexNone: 'flex: none;',
+  wraps: 'flex-wrap: wrap;',
+  row: 'flex-direction: row;',
+  rowReverse: 'flex-direction: row-reverse;',
+  column: 'flex-direction: column;',
+  columnReverse: 'flex-direction: column-reverse;',
+  justifyStart: 'justify-content: flex-start;',
+  justifyEnd: 'justify-content: flex-end;',
+  justifyCenter: 'justify-content: center;',
+  justifyBetween: 'justify-content: space-between;',
+  justifyAround: 'justify-content: space-around;',
+  justifyEvenly: 'justify-content: space-evenly;',
+  itemsStart: 'align-items: flex-start;',
+  itemsEnd: 'align-items: flex-end;',
+  itemsCenter: 'align-items: center;',
+  itemsBaseline: 'align-items: baseline;',
+  itemsStretch: 'align-items: stretch;',
+  contentStart: 'align-content: flex-start;',
+  contentEnd: 'align-content: flex-end;',
+  contentCenter: 'align-content: center;',
+  contentBetween: 'align-content: space-between;',
+  contentArouns: 'align-content: space-around;',
+  contentStretch: 'align-content: stretch;',
+  selfAuto: 'align-self: auto;',
+  selfStart: 'align-self: flex-start;',
+  selfEnd: 'align-self: flex-end;',
+  selfCenter: 'align-self: center;',
+  selfBaseline: 'align-self: baseline;',
+  selfStretch: 'align-self: stretch;',
+  listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value)}; }`,
+  listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value)}; }`,
+  listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value)}; }`,
+  listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value)}; }`
+}
+
+function doMediaQueriesStuff(props = {}) {
+  if (!props.theme) return
+  if (!props.theme.styledKitMediaQueries) return
+
+  const queryNames = Object.keys(props.theme.styledKitMediaQueries)
+
+  if (!queryNames.length) return
+
+  const queryNameToValuesMap = queryNames.reduce((all, query) => {
+    const declaration = props[query]
+
+    if (!declaration) return all
+
+    const allDeclarations =
+      typeof declaration === 'string'
+        ? declaration
+        : Object.keys(props[query]).reduce((all, property) => {
+            const value = props[query][property]
+            let foo = stuff[property]
+
+            if (!foo) return `${all}${camelToKebab(property)}:${value};`
+
+            const declaration = typeof foo === 'function' ? foo(value) : foo
+
+            return `${all}${declaration}`
+          }, '')
+
+    return { ...all, [query]: allDeclarations }
+  }, {})
+
+  const cssString = queryNames.reduce((all, query) => {
+    if (!queryNameToValuesMap[query]) return all
+
+    return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
+  }, '')
+
+  return cssString
+}
 
 // prettier-ignore
 export default styled.div`
@@ -16,6 +94,7 @@ export default styled.div`
       if (props.flex === true) return 'flex'
       if (props.block) return 'block'
       if (props.grid) return 'grid'
+      if (props.static) return 'static'
       return 'flex'
     }
   }};
@@ -83,12 +162,12 @@ export default styled.div`
 
   ${createPosition}
 
-  ${({ width }) => width && css`width: ${withUnit(width)};`}
-  ${({ height }) => height && css`height: ${withUnit(height)};`}
-  ${({ minWidth }) => minWidth && css`min-width: ${withUnit(minWidth)};`}
-  ${({ minHeight }) => minHeight && css`min-height: ${withUnit(minHeight)};`}
-  ${({ maxWidth }) => maxWidth && css`max-width: ${withUnit(maxWidth)};`}
-  ${({ maxHeight }) => maxHeight && css`max-height: ${withUnit(maxHeight)};`}
+  ${({ width }) => hasValue(width) && css`width: ${withUnit(width)};`}
+  ${({ height }) => hasValue(height) && css`height: ${withUnit(height)};`}
+  ${({ minWidth }) => hasValue(minWidth) && css`min-width: ${withUnit(minWidth)};`}
+  ${({ minHeight }) => hasValue(minHeight) && css`min-height: ${withUnit(minHeight)};`}
+  ${({ maxWidth }) => hasValue(maxWidth) && css`max-width: ${withUnit(maxWidth)};`}
+  ${({ maxHeight }) => hasValue(maxHeight) && css`max-height: ${withUnit(maxHeight)};`}
 
   ${({ fullHeight }) => fullHeight && css`min-height: 100vh;`}
 
@@ -127,4 +206,6 @@ export default styled.div`
     transition: opacity 0.3s;
     ${props.visible === false && 'opacity: 0;'}
   `}
+
+  ${doMediaQueriesStuff}
 `
