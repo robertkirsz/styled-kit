@@ -4,7 +4,7 @@ import { hasValue, isAlphaNumeric, withUnit, createSpaces, createPosition, creat
 
 const layerStyles = 'position: absolute; top: 0; right: 0; bottom: 0; left: 0;'
 
-const stuff = {
+export const stuff = {
   absolute: 'position: absolute;',
   fixed: 'position: fixed;',
   relative: 'position: relative;',
@@ -121,61 +121,6 @@ export default styled.div`
   ${doStuff}
 
   display: ${({ inline }) => inline ? 'inline-flex' : 'flex'};
-
-  ${props => {
-    let styles = ''
-
-    if (props.flexNone) styles += stuff.flexNone
-
-    /* Move to stuff? */
-    if (isAlphaNumeric(props.flex)) styles += `flex: ${props.flex};`
-    if (isAlphaNumeric(props.order)) styles += `order: ${props.order};`
-
-    if (props.row) styles += stuff.row
-    if (props.rowReverse) styles += stuff.rowReverse
-    if (props.column) styles += stuff.column
-    if (props.columnReverse) styles += stuff.columnReverse
-
-    if (props.justifyStart) styles += stuff.justifyStart
-    if (props.justifyEnd) styles += stuff.justifyEnd
-    if (props.justifyCenter) styles += stuff.justifyCenter
-    if (props.justifyBetween) styles += stuff.justifyBetween
-    if (props.justifyAround) styles += stuff.justifyAround
-    if (props.justifyEvenly) styles += stuff.justifyEvenly
-
-    if (props.itemsStart) styles += stuff.itemsStart
-    if (props.itemsEnd) styles += stuff.itemsEnd
-    if (props.itemsCenter) styles += stuff.itemsCenter
-    if (props.itemsBaseline) styles += stuff.itemsBaseline
-    if (props.itemsStretch) styles += stuff.itemsStretch
-
-    if (props.contentStart) styles += stuff.contentStart
-    if (props.contentEnd) styles += stuff.contentEnd
-    if (props.contentCenter) styles += stuff.contentCenter
-    if (props.contentBetween) styles += stuff.contentBetween
-    if (props.contentArouns) styles += stuff.contentArouns
-    if (props.contentStretch) styles += stuff.contentStretch
-
-    if (props.selfAuto) styles += stuff.selfAuto
-    if (props.selfStart) styles += stuff.selfStart
-    if (props.selfEnd) styles += stuff.selfEnd
-    if (props.selfCenter) styles += stuff.selfCenter
-    if (props.selfBaseline) styles += stuff.selfBaseline
-    if (props.selfStretch) styles += stuff.selfStretch
-
-    if (props.wraps) styles += stuff.wraps
-    if (props.clickable) styles += stuff.clickable
-    if (props.noPointerEvents) styles += stuff.noPointerEvents
-
-    if (props.absolute) styles += stuff.absolute
-    if (props.fixed) styles += stuff.fixed
-    if (props.relative) styles += stuff.relative
-
-    if (props.layer) styles += stuff.layer
-    if (props.hide) styles += stuff.hide
-
-    return styles
-  }}
 
   ${createPosition}
 
