@@ -3,10 +3,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Div from '../components/Div'
-import Container from '../components/Container'
-import Row from '../components/Row'
-import Col from '../components/Col'
+import Div from 'components/Div'
+import Container from 'components/Container'
+import Row from 'components/Row'
+import Col from 'components/Col'
 
 export default () => (
   <GridHelper>

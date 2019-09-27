@@ -14,5 +14,8 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html'
     })
-  ]
+  ],
+  resolve: {
+    modules: ['src', 'node_modules']
+  }
 }

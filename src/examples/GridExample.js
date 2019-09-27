@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import ScreenSizeInfo from '../helpers/ScreenSizeInfo'
-import { withSizes } from '../providers/ScreenSizeProvider'
-import GridHelper from '../helpers/GridHelper'
+import ScreenSizeInfo from 'helpers/ScreenSizeInfo'
+import { withSizes } from 'providers/ScreenSizeProvider'
+import GridHelper from 'helpers/GridHelper'
 
-import Div from '../components/Div'
-import Container from '../components/Container'
-import Row from '../components/Row'
-import Col from '../components/Col'
+import Div from 'components/Div'
+import Container from 'components/Container'
+import Row from 'components/Row'
+import Col from 'components/Col'
 
 const GridExample = props => (
   <Div column relative padding="24px 0" {...props}>

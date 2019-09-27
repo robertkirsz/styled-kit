@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Div from '../components/Div'
+import Div from 'components/Div'
 
 const DivExample = props => (
   <Wrapper {...props}>

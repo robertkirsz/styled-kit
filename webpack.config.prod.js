@@ -29,5 +29,8 @@ module.exports = {
     react: 'commonjs2 react',
     'react-dom': 'commonjs2 react-dom',
     'styled-components': 'commonjs2 styled-components'
+  },
+  resolve: {
+    modules: ['src', 'node_modules']
   }
 }

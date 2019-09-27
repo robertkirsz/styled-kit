@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import useForm from '../hooks/useForm'
+import useForm from 'hooks/useForm'
 
-import Div from '../components/Div'
+import Div from 'components/Div'
 
 const initialValues = {
   display: 'flex',

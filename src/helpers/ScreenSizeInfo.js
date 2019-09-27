@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Div from '../components/Div'
+import Div from 'components/Div'
 
 // prettier-ignore
 const ScreenSizeInfo = styled(Div)`

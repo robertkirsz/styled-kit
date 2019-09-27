@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import stuff from '../stuff'
-import { camelToKebab } from '../utils'
+import stuff from 'stuff'
+import { camelToKebab } from 'utils'
 
 function doStuff(props) {
   return Object.keys(props).reduce((css, prop) => {

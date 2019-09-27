@@ -1,6 +1,6 @@
 // TODO: check if prop `visible` is used in products
 
-import { withUnit } from './utils'
+import { withUnit } from 'utils'
 
 const layerStyles = 'position: absolute; top: 0; right: 0; bottom: 0; left: 0;'
 

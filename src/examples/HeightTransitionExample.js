@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import Div from '../components/Div'
-import HeightTransition from '../components/HeightTransition'
+import Div from 'components/Div'
+import HeightTransition from 'components/HeightTransition'
 
 export default class HeightTransitionExample extends Component {
   state = {

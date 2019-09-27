@@ -10,11 +10,18 @@ const props = Object.keys(stuff).reduce((result, prop) => {
   return { ...result, [prop]: typeof stuff[prop] === 'function' ? 1 : true }
 }, {})
 
+// TODO: duplicated
+const styledKitMediaQueries = {
+  small: '(max-width: 320px)',
+  medium: '(min-width: 321px) and (max-width: 768px)',
+  large: '(min-width: 769px)'
+}
+
 describe('<Div />', () => {
   it('Matches snapshot', () => {
     const { getByTestId } = render(
-      <ThemeProvider theme={{}}>
-        <Div data-testid="test" {...props} />
+      <ThemeProvider theme={{ styledKitMediaQueries }}>
+        <Div data-testid="test" {...props} small={props} medium="color: green;" large="color: blue;" />
       </ThemeProvider>
     )
 

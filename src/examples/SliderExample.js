@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import Div from '../components/Div'
-import Slider from '../components/Slider'
+import Div from 'components/Div'
+import Slider from 'components/Slider'
 
 class SliderExample extends Component {
   state = { activeSlide: 0 }

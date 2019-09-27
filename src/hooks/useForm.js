@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import usePrevious from './usePrevious'
+import usePrevious from 'hooks/usePrevious'
 
 export default function useForm(initialValues = {}, onSubmit = null, validators = {}, addValidationStatus = true) {
   const [values, setValues] = useState(initialValues)

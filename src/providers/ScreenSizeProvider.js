@@ -1,7 +1,7 @@
 import React, { Component, createContext } from 'react'
 import PropTypes from 'prop-types'
 
-import isShallowEqual from '../utils/isShallowEqual'
+import isShallowEqual from 'utils/isShallowEqual'
 
 const getSizeValues = sizes =>
   sizes.reduce(
