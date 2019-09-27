@@ -4,48 +4,54 @@ import stuff from 'stuff'
 import { camelToKebab } from 'utils'
 
 function doStuff(props) {
+  const mgKeys = Object.keys(props.theme.styledKitMediaQueries || {})
+
   return Object.keys(props).reduce((css, prop) => {
     const y = stuff[prop]
-    return y ? `${css}${typeof y === 'function' ? y(props[prop], props) : y}` : css
+    if (mgKeys.includes(prop)) {
+      // console.log(prop)
+      // console.log(props[prop])
+    }
+    return y && !mgKeys.includes(prop) ? `${css}${typeof y === 'function' ? y(props[prop], props) : y}` : css
   }, '')
 }
 
-function doMediaQueriesStuff(props = {}) {
-  try {
-    const queryNames = Object.keys(props.theme.styledKitMediaQueries)
+function doMediaQueriesStuff(props) {
+  if (!props.theme || !props.theme.styledKitMediaQueries) return
 
-    if (!queryNames.length) return
+  const queryNames = Object.keys(props.theme.styledKitMediaQueries)
 
-    const queryNameToValuesMap = queryNames.reduce((all, query) => {
-      const declaration = props[query]
+  if (!queryNames.length) return
 
-      if (!declaration) return all
+  const queryNameToValuesMap = queryNames.reduce((all, query) => {
+    const declaration = props[query]
 
-      const allDeclarations =
-        typeof declaration === 'string'
-          ? declaration
-          : Object.keys(props[query]).reduce((all, property) => {
-              const value = props[query][property]
-              let foo = stuff[property]
+    if (!declaration) return all
 
-              if (!foo) return `${all}${camelToKebab(property)}:${value};`
+    const allDeclarations =
+      typeof declaration === 'string'
+        ? declaration
+        : Object.keys(props[query]).reduce((all, property) => {
+            const value = props[query][property]
+            let foo = stuff[property]
 
-              const declaration = typeof foo === 'function' ? foo(value) : foo
+            if (!foo) return `${all}${camelToKebab(property)}:${value};`
 
-              return `${all}${declaration}`
-            }, '')
+            const declaration = typeof foo === 'function' ? foo(value, props) : foo
 
-      return { ...all, [query]: allDeclarations }
-    }, {})
+            return `${all}${declaration}`
+          }, '')
 
-    const cssString = queryNames.reduce((all, query) => {
-      if (!queryNameToValuesMap[query]) return all
+    return { ...all, [query]: allDeclarations }
+  }, {})
 
-      return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
-    }, '')
+  const cssString = queryNames.reduce((all, query) => {
+    if (!queryNameToValuesMap[query]) return all
 
-    return cssString
-  } catch {}
+    return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
+  }, '')
+
+  return cssString
 }
 
 export default styled.div`
