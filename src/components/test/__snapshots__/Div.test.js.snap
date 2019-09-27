@@ -347,13 +347,39 @@ exports[`<Div /> Matches snapshot 1`] = `
 
 @media (min-width:321px) and (max-width:768px) {
   .c0 {
-    color: green;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: pink;
   }
 }
 
 @media (min-width:769px) {
   .c0 {
-    color: blue;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: gray;
+  }
+
+  .c0 > *:not(:first-child) {
+    margin-top: 8px;
   }
 }
 
