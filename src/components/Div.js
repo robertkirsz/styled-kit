@@ -9,11 +9,11 @@ const stuff = {
   fixed: 'position: fixed;',
   relative: 'position: relative;',
   flexNone: 'flex: none;',
-  wraps: 'flex-wrap: wrap;',
   row: 'flex-direction: row;',
   rowReverse: 'flex-direction: row-reverse;',
   column: 'flex-direction: column;',
   columnReverse: 'flex-direction: column-reverse;',
+  wraps: 'flex-wrap: wrap;',
   justifyStart: 'justify-content: flex-start;',
   justifyEnd: 'justify-content: flex-end;',
   justifyCenter: 'justify-content: center;',
@@ -37,8 +37,8 @@ const stuff = {
   selfCenter: 'align-self: center;',
   selfBaseline: 'align-self: baseline;',
   selfStretch: 'align-self: stretch;',
-  layer: use => use && layerStyles,
-  hide: hide => hide && 'display: none;',
+  layer: layerStyles,
+  hide: 'display: none;',
   top: value => `top: ${withUnit(value)};`,
   right: value => `right: ${withUnit(value)};`,
   bottom: value => `bottom: ${withUnit(value)};`,
@@ -56,124 +56,125 @@ const stuff = {
   listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value)}; }`,
   listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value)}; }`,
   listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value)}; }`,
-  listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value)}; }`
+  listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value)}; }`,
+  clickable: 'cursor: pointer;',
+  noPointerEvents: 'pointer-events: none;'
 }
 
 function doMediaQueriesStuff(props = {}) {
-  if (!props.theme) return
-  if (!props.theme.styledKitMediaQueries) return
+  try {
+    const queryNames = Object.keys(props.theme.styledKitMediaQueries)
 
-  const queryNames = Object.keys(props.theme.styledKitMediaQueries)
+    if (!queryNames.length) return
 
-  if (!queryNames.length) return
+    const queryNameToValuesMap = queryNames.reduce((all, query) => {
+      const declaration = props[query]
 
-  const queryNameToValuesMap = queryNames.reduce((all, query) => {
-    const declaration = props[query]
+      if (!declaration) return all
 
-    if (!declaration) return all
+      const allDeclarations =
+        typeof declaration === 'string'
+          ? declaration
+          : Object.keys(props[query]).reduce((all, property) => {
+              const value = props[query][property]
+              let foo = stuff[property]
 
-    const allDeclarations =
-      typeof declaration === 'string'
-        ? declaration
-        : Object.keys(props[query]).reduce((all, property) => {
-            const value = props[query][property]
-            let foo = stuff[property]
+              if (!foo) return `${all}${camelToKebab(property)}:${value};`
 
-            if (!foo) return `${all}${camelToKebab(property)}:${value};`
+              const declaration = typeof foo === 'function' ? foo(value) : foo
 
-            const declaration = typeof foo === 'function' ? foo(value) : foo
+              return `${all}${declaration}`
+            }, '')
 
-            return `${all}${declaration}`
-          }, '')
+      return { ...all, [query]: allDeclarations }
+    }, {})
 
-    return { ...all, [query]: allDeclarations }
-  }, {})
+    const cssString = queryNames.reduce((all, query) => {
+      if (!queryNameToValuesMap[query]) return all
 
-  const cssString = queryNames.reduce((all, query) => {
-    if (!queryNameToValuesMap[query]) return all
+      return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
+    }, '')
 
-    return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
+    return cssString
+  } catch {}
+}
+
+function doStuff({ onDone, ...props }) {
+  const a = Object.keys(props).reduce((css, prop) => {
+    if (!stuff[prop]) return css
+    try {
+      return css + stuff[prop](props[prop])
+    } catch {
+      return css + stuff[prop]
+    }
   }, '')
 
-  return cssString
+  if (onDone) {
+    onDone(a)
+  }
+
+  return a
 }
 
 // prettier-ignore
 export default styled.div`
-  display: ${props => {
-    if (props.inline) {
-      if (props.block) return 'inline-block'
-      else if (props.grid) return 'inline-grid'
-      else if (props.flex === true) return 'inline-flex'
-      else return 'inline'
-    } else {
-      if (props.flex === true) return 'flex'
-      if (props.block) return 'block'
-      if (props.grid) return 'grid'
-      if (props.static) return 'static'
-      return 'flex'
-    }
-  }};
+  ${doStuff}
+
+  display: ${({ inline }) => inline ? 'inline-flex' : 'flex'};
 
   ${props => {
-    if (!props.block || !(props.inline && !props.flex)) {
-      let styles = ''
+    let styles = ''
 
-      if (props.row) styles += 'flex-direction: row;'
-      if (props.rowReverse) styles += 'flex-direction: row-reverse;'
-      if (props.column) styles += 'flex-direction: column;'
-      if (props.columnReverse) styles += 'flex-direction: column-reverse;'
+    if (props.flexNone) styles += stuff.flexNone
 
-      if (props.justifyContent) styles += `justify-content: ${props.justifyContent};`
-      if (props.justifyStart) styles += 'justify-content: flex-start;'
-      if (props.justifyEnd) styles += 'justify-content: flex-end;'
-      if (props.justifyCenter) styles += 'justify-content: center;'
-      if (props.justifyBetween) styles += 'justify-content: space-between;'
-      if (props.justifyAround) styles += 'justify-content: space-around;'
-      if (props.justifyEvenly) styles += 'justify-content: space-evenly;'
+    /* Move to stuff? */
+    if (isAlphaNumeric(props.flex)) styles += `flex: ${props.flex};`
+    if (isAlphaNumeric(props.order)) styles += `order: ${props.order};`
 
-      if (props.alignItems) styles += `align-items: ${props.alignItems};`
-      if (props.itemsStart) styles += 'align-items: flex-start;'
-      if (props.itemsEnd) styles += 'align-items: flex-end;'
-      if (props.itemsCenter) styles += 'align-items: center;'
-      if (props.itemsBaseline) styles += 'align-items: baseline;'
-      if (props.itemsStretch) styles += 'align-items: stretch;'
+    if (props.row) styles += stuff.row
+    if (props.rowReverse) styles += stuff.rowReverse
+    if (props.column) styles += stuff.column
+    if (props.columnReverse) styles += stuff.columnReverse
 
-      if (props.alignContent) styles += `align-content: ${props.alignContent};`
-      if (props.contentStart) styles += 'align-content: flex-start;'
-      if (props.contentEnd) styles += 'align-content: flex-end;'
-      if (props.contentCenter) styles += 'align-content: center;'
-      if (props.contentBetween) styles += 'align-content: space-between;'
-      if (props.contentArouns) styles += 'align-content: space-around;'
-      if (props.contentStretch) styles += 'align-content: stretch;'
+    if (props.justifyStart) styles += stuff.justifyStart
+    if (props.justifyEnd) styles += stuff.justifyEnd
+    if (props.justifyCenter) styles += stuff.justifyCenter
+    if (props.justifyBetween) styles += stuff.justifyBetween
+    if (props.justifyAround) styles += stuff.justifyAround
+    if (props.justifyEvenly) styles += stuff.justifyEvenly
 
-      if (props.alignSelf) styles += `align-self: ${props.alignSelf};`
-      if (props.selfAuto) styles += 'align-self: auto;'
-      if (props.selfStart) styles += 'align-self: flex-start;'
-      if (props.selfEnd) styles += 'align-self: flex-end;'
-      if (props.selfCenter) styles += 'align-self: center;'
-      if (props.selfBaseline) styles += 'align-self: baseline;'
-      if (props.selfStretch) styles += 'align-self: stretch;'
+    if (props.itemsStart) styles += stuff.itemsStart
+    if (props.itemsEnd) styles += stuff.itemsEnd
+    if (props.itemsCenter) styles += stuff.itemsCenter
+    if (props.itemsBaseline) styles += stuff.itemsBaseline
+    if (props.itemsStretch) styles += stuff.itemsStretch
 
-      return styles
-    }
-  }}
+    if (props.contentStart) styles += stuff.contentStart
+    if (props.contentEnd) styles += stuff.contentEnd
+    if (props.contentCenter) styles += stuff.contentCenter
+    if (props.contentBetween) styles += stuff.contentBetween
+    if (props.contentArouns) styles += stuff.contentArouns
+    if (props.contentStretch) styles += stuff.contentStretch
 
-  ${({ wraps }) => wraps && 'flex-wrap: wrap;'}
+    if (props.selfAuto) styles += stuff.selfAuto
+    if (props.selfStart) styles += stuff.selfStart
+    if (props.selfEnd) styles += stuff.selfEnd
+    if (props.selfCenter) styles += stuff.selfCenter
+    if (props.selfBaseline) styles += stuff.selfBaseline
+    if (props.selfStretch) styles += stuff.selfStretch
 
-  ${({ area }) => typeof area === 'string' && `grid-area: ${area};`}
+    if (props.wraps) styles += stuff.wraps
+    if (props.clickable) styles += stuff.clickable
+    if (props.noPointerEvents) styles += stuff.noPointerEvents
 
-  ${({ order }) => isAlphaNumeric(order) && `order: ${order};`}
+    if (props.absolute) styles += stuff.absolute
+    if (props.fixed) styles += stuff.fixed
+    if (props.relative) styles += stuff.relative
 
-  ${({ flexNone, flex }) => {
-    if (flexNone) return 'flex: none;'
-    if (isAlphaNumeric(flex)) return css`flex: ${flex};`
-  }}
+    if (props.layer) styles += stuff.layer
+    if (props.hide) styles += stuff.hide
 
-  ${({ absolute, fixed, relative }) => {
-    if (absolute) return 'position: absolute;'
-    if (fixed) return 'position: fixed;'
-    if (relative) return 'position: relative;'
+    return styles
   }}
 
   ${createPosition}
@@ -197,10 +198,7 @@ export default styled.div`
 
   ${createLists}
 
-  ${({ layer }) => layer && layerStyles}
   ${({ square }) => square && css`width: ${withUnit(square)}; height: ${withUnit(square)};`}
-  ${({ clickable }) => clickable && 'cursor: pointer;'}
-  ${({ noPointerEvents }) => noPointerEvents && css`pointer-events: none;`}
 
   ${({ background }) => background && css`background: ${background};`}
   ${({ backgroundImage }) => backgroundImage && css`background-image: url(${backgroundImage});`}
@@ -222,8 +220,6 @@ export default styled.div`
     transition: opacity 0.3s;
     ${visible === false && 'opacity: 0;'}
   `}
-
-  ${({ hide }) => hide && 'display: none;'}
 
   ${doMediaQueriesStuff}
 `

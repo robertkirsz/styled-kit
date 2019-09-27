@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, createGlobalStyle } from 'styled-components'
 
 export const queries = [
   { name: 'smallOnly', value: '(max-width: 639px)' },
@@ -20,3 +20,10 @@ export const screenSize = queries.reduce(
   }),
   {}
 )
+
+export const GlobalStyles = createGlobalStyle`
+  body {
+    margin: 0;
+    font: 16px sans-serif;
+  }
+`

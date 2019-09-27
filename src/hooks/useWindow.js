@@ -26,7 +26,7 @@ export default function useWindow() {
       window.removeEventListener('resize', handleChange)
       window.removeEventListener('scroll', handleChange)
     }
-  }, [])
+  }, [getCoordinates, isClient])
 
   return windowSize
 }

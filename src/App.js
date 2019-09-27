@@ -1,9 +1,12 @@
 import React from 'react'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+
+import { GlobalStyles } from './styles'
 
 import Div from './components/Div'
 import MediaQueriesProvider from './providers/MediaQueriesProvider'
 
+import DivPlayground from './examples/DivPlayground'
 import DivExample from './examples/DivExample'
 import DivMediaQueriesExample from './examples/DivMediaQueriesExample'
 import GridExample from './examples/GridExample'
@@ -18,33 +21,25 @@ const styledKitMediaQueries = {
   large: '(min-width: 769px)'
 }
 
-const App = () => (
-  <>
-    <Div column listTop={16}>
-      <MediaQueriesProvider queries={queries}>
-        <GridExample />
-      </MediaQueriesProvider>
-
-      <DivExample />
-
+export default function App() {
+  return (
+    <>
       <ThemeProvider theme={{ styledKitMediaQueries }}>
-        <DivMediaQueriesExample />
+        <Div column listTop={16}>
+          <DivPlayground />
+
+          <MediaQueriesProvider queries={queries}>
+            <GridExample />
+          </MediaQueriesProvider>
+
+          <DivExample />
+          <DivMediaQueriesExample />
+          <HeightTransitionExample />
+          <SliderExample />
+        </Div>
       </ThemeProvider>
 
-      <HeightTransitionExample />
-
-      <SliderExample />
-    </Div>
-
-    <GlobalStyles />
-  </>
-)
-
-export default App
-
-const GlobalStyles = createGlobalStyle`
-  body {
-    margin: 0;
-    font: 16px sans-serif;
-  }
-`
+      <GlobalStyles />
+    </>
+  )
+}

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Div from '../components/Div'
 
 const DivExample = props => (
-  <Wrapper grid {...props}>
+  <Wrapper {...props}>
     <Container justifyStart>
       <Item />
       <Item />
@@ -63,7 +63,8 @@ const DivExample = props => (
 
 export default DivExample
 
-const Wrapper = styled(Div)`
+const Wrapper = styled.div`
+  display: grid;
   grid-template-columns: repeat(auto-fit, 150px);
   grid-auto-rows: 150px;
   grid-gap: 8px;

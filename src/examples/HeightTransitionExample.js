@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Div from '../components/Div'
 import HeightTransition from '../components/HeightTransition'
 
-class HeightTransitionExample extends Component {
+export default class HeightTransitionExample extends Component {
   state = {
     show1: false,
     show2: false,
@@ -13,7 +13,7 @@ class HeightTransitionExample extends Component {
 
   render() {
     return (
-      <Wrapper grid>
+      <Wrapper>
         <div>
           <Div as="button" mBottom={8} onClick={() => this.setState({ show1: !this.state.show1 })}>
             Show
@@ -56,9 +56,8 @@ class HeightTransitionExample extends Component {
   }
 }
 
-export default HeightTransitionExample
-
-const Wrapper = styled(Div)`
+const Wrapper = styled.div`
+  display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
   grid-gap: 8px;
 `

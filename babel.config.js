@@ -5,10 +5,11 @@ module.exports = api => {
   const presets = ['@babel/env', '@babel/react']
 
   const plugins = [
+    ['@babel/plugin-transform-runtime', { regenerator: true }],
     '@babel/proposal-export-default-from',
     '@babel/proposal-class-properties',
     '@babel/proposal-optional-chaining',
-    'styled-components'
+    ['styled-components', { displayName: false }]
   ]
 
   return { presets, plugins }

@@ -15,7 +15,7 @@ const useHeightObserver = node => {
     resizeObserver.observe(element)
 
     return () => resizeObserver.unobserve(element)
-  }, [])
+  }, [node])
 
   return height
 }

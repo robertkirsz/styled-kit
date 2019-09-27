@@ -59,11 +59,3 @@ You can pass a color string value to the `overlay` prop and that will create a c
 `clickable` props will set `cursor: pointer;` and `noPointerEvents` results in `pointer-events: none;`.
 
 `visible` prop is a quick way to hide the Div using an opacity transition. If you set it to false, the opacity attribute will be set to `0`.
-
-## `<HeightTransition />`
-
-`import HeightTransition from 'styled-kit/HeightTransition'`
-
-Use it to wrap an element with it that you want to slide-in when HeightTransition's `isActive` prop changes to `true`.
-
-There are some issues with animation jumping if HeightTransition's direct child has some margins applied to it. Try to use padding instead, or wrap the child with a div.
