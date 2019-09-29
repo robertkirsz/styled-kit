@@ -30,7 +30,7 @@ export default {
   contentEnd: use => use && 'align-content: flex-end;',
   contentCenter: use => use && 'align-content: center;',
   contentBetween: use => use && 'align-content: space-between;',
-  contentArouns: use => use && 'align-content: space-around;',
+  contentAround: use => use && 'align-content: space-around;',
   contentStretch: use => use && 'align-content: stretch;',
   selfAuto: use => use && 'align-self: auto;',
   selfStart: use => use && 'align-self: flex-start;',
@@ -69,10 +69,10 @@ export default {
   cover: use => use && 'background-size: cover;',
   contain: use => use && 'background-size: contain;',
   z: value => `z-index: ${value};`,
-  listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value)}; }`,
-  listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value)}; }`,
-  listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value)}; }`,
-  listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value)}; }`,
+  listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value === true ? 8 : value)}; }`,
+  listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value === true ? 8 : value)}; }`,
+  listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
+  listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value === true ? 8 : value)}; }`,
   overlay: (value, props) => `
     position: ${(props.absolute && 'absolute') || 'relative'};
 

@@ -5,38 +5,91 @@ import stuff from 'stuff'
 import useForm from 'hooks/useForm'
 
 import Div from 'components/Div'
+import Field from 'components/Field'
+
+const textParser = value => (value === '' ? '' : isNaN(value) ? value : parseInt(value))
+
+const fields = [
+  { name: 'width', type: 'text', initialValue: 200, parser: textParser },
+  { name: 'height', type: 'text', initialValue: 200, parser: textParser },
+  { name: 'margin', type: 'text', initialValue: 4, parser: textParser },
+  { name: 'padding', type: 'text', initialValue: 8, parser: textParser },
+  { name: 'background', type: 'text', initialValue: 'powderblue' },
+  {
+    name: 'justify-content',
+    type: 'select',
+    initialValue: '',
+    options: [
+      { value: 'justifyStart', label: 'flex-start' },
+      { value: 'justifyEnd', label: 'flex-end' },
+      { value: 'justifyCenter', label: 'center' },
+      { value: 'justifyBetween', label: 'space-between' },
+      { value: 'justifyAround', label: 'space-around' },
+      { value: 'justifyEvenly', label: 'space-evenly' }
+    ]
+  },
+  {
+    name: 'align-items',
+    type: 'select',
+    initialValue: '',
+    options: [
+      { value: 'itemsStart', label: 'flex-start' },
+      { value: 'itemsEnd', label: 'flex-end' },
+      { value: 'itemsCenter', label: 'center' },
+      { value: 'itemsBaseline', label: 'baseline' },
+      { value: 'itemsStretch', label: 'stretch' }
+    ]
+  },
+  {
+    name: 'align-content',
+    type: 'select',
+    initialValue: '',
+    options: [
+      { value: 'contentStart', label: 'flex-start' },
+      { value: 'contentEnd', label: 'flex-end' },
+      { value: 'contentCenter', label: 'center' },
+      { value: 'contentBetween', label: 'space-between' },
+      { value: 'contentAround', label: 'space-around' },
+      { value: 'contentStretch', label: 'stretch' }
+    ]
+  },
+  {
+    name: 'position',
+    type: 'select',
+    initialValue: '',
+    options: [
+      { value: 'relative', label: 'relative' },
+      { value: 'absolute', label: 'absolute' },
+      { value: 'fixed', label: 'fixed' },
+      { value: 'sticky', label: 'sticky' }
+    ]
+  },
+  { name: 'listTop', type: 'text', initialValue: '', parser: textParser },
+  { name: 'listRight', type: 'text', initialValue: '', parser: textParser },
+  { name: 'listBottom', type: 'text', initialValue: '', parser: textParser },
+  { name: 'listLeft', type: 'text', initialValue: 8, parser: textParser },
+  { name: 'square', type: 'text', initialValue: '', parser: textParser }
+]
 
 const initialValues = {
-  width: 200,
-  height: 100,
-  margin: 8,
-  padding: 8,
-  square: '',
-  background: 'powderblue',
-  relative: false,
-  absolute: false,
-  fixed: false,
-  sticky: false,
-  justifyStart: false,
-  justifyEnd: false,
-  justifyCenter: false,
-  justifyBetween: false,
-  justifyAround: false,
-  justifyEvenly: false,
-  itemsStart: false,
-  itemsEnd: false,
-  itemsCenter: false,
-  itemsBaseline: false,
-  itemsStretch: false,
-  listTop: null,
-  listRight: null,
-  listBottom: null,
-  listLeft: 8
+  ...fields.reduce((all, field) => {
+    if (field.options)
+      return {
+        ...all,
+        ...field.options.reduce(
+          (prev, curr) => ({
+            ...prev,
+            [curr.value]: false
+          }),
+          {}
+        )
+      }
+
+    return { ...all, [field.name]: field.initialValue }
+  }, {})
 }
 
 const formatValue = value => (typeof value === 'string' ? `"${value}"` : `{${value}}`)
-
-const reg = /[^a-z0-9- ]+/g
 
 export default function DivPlayground() {
   async function onSubmit(value) {
@@ -44,6 +97,7 @@ export default function DivPlayground() {
   }
 
   const form = useForm(initialValues, onSubmit, {}, false)
+  console.log(form.values)
 
   const code = Object.keys(stuff).reduce((prev, prop) => {
     const value = typeof form.values[prop] === 'function' ? form.values[prop]() : form.values[prop]
@@ -53,158 +107,19 @@ export default function DivPlayground() {
     return prev + `${prop}=${formatValue(value)}\n`
   }, '')
 
-  const changer = field => event => {
-    const value = (event.target.value || '').toLowerCase().replace(reg, '')
-
-    if (field === 'justify-content') {
-      form.inputs.justifyStart.onChange(null, value === 'flex-start')
-      form.inputs.justifyEnd.onChange(null, value === 'flex-end')
-      form.inputs.justifyCenter.onChange(null, value === 'center')
-      form.inputs.justifyBetween.onChange(null, value === 'space-between')
-      form.inputs.justifyAround.onChange(null, value === 'space-around')
-      form.inputs.justifyEvenly.onChange(null, value === 'space-evenly')
-      return
-    }
-
-    if (field === 'align-items') {
-      form.inputs.itemsStart.onChange(null, value === 'flex-start')
-      form.inputs.itemsEnd.onChange(null, value === 'flex-end')
-      form.inputs.itemsCenter.onChange(null, value === 'center')
-      form.inputs.itemsBaseline.onChange(null, value === 'baseline')
-      form.inputs.itemsStretch.onChange(null, value === 'stretch')
-      return
-    }
-
-    if (field === 'position') {
-      form.inputs.relative.onChange(null, value === 'relative')
-      form.inputs.absolute.onChange(null, value === 'absolute')
-      form.inputs.fixed.onChange(null, value === 'fixed')
-      form.inputs.sticky.onChange(null, value === 'sticky')
-      return
-    }
-
-    form.inputs[field].onChange(
-      null,
-      {
-        width: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        height: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        margin: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        padding: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        square: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        listTop: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        listRight: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        listBottom: value === '' ? '' : isNaN(value) ? value : parseInt(value),
-        listLeft: value === '' ? '' : isNaN(value) ? value : parseInt(value)
-      }[field] || value
-    )
-  }
-
   return (
     <Div padding={24} column listTop background="pink">
-      <Div as="form" onSubmit={form.handleSubmit} column listTop>
-        <Div listLeft>
-          <code>width:</code>
-          <input {...form.inputs.width} onChange={changer('width')} />
-        </Div>
-
-        <Div listLeft>
-          <code>height:</code>
-          <input {...form.inputs.height} onChange={changer('height')} />
-        </Div>
-
-        <Div listLeft>
-          <code>margin:</code>
-          <input {...form.inputs.margin} onChange={changer('margin')} />
-        </Div>
-
-        <Div listLeft>
-          <code>padding:</code>
-          <input {...form.inputs.padding} onChange={changer('padding')} />
-        </Div>
-
-        <Div listLeft>
-          <code>square:</code>
-          <input {...form.inputs.square} onChange={changer('square')} />
-        </Div>
-
-        {/* <Div listLeft>
-          <code>background:</code>
-          <input {...form.inputs.background} onChange={changer('background')} />
-        </Div> */}
-
-        <Div listLeft>
-          <code>listTop:</code>
-          <input {...form.inputs.listTop} onChange={changer('listTop')} />
-        </Div>
-
-        <Div listLeft>
-          <code>listRight:</code>
-          <input {...form.inputs.listRight} onChange={changer('listRight')} />
-        </Div>
-
-        <Div listLeft>
-          <code>listBottom:</code>
-          <input {...form.inputs.listBottom} onChange={changer('listBottom')} />
-        </Div>
-
-        <Div listLeft>
-          <code>listLeft:</code>
-          <input {...form.inputs.listLeft} onChange={changer('listLeft')} />
-        </Div>
-
-        <Div listLeft>
-          <code>align-items:</code>
-          <select {...form.inputs['align-items']} onChange={changer('align-items')}>
-            <option value=""></option>
-            <option value="flex-start">flex-start</option>
-            <option value="flex-end">flex-end</option>
-            <option value="center">center</option>
-            <option value="baseline">baseline</option>
-            <option value="stretch">stretch</option>
-          </select>
-        </Div>
+      <Div as="form" onSubmit={form.handleSubmit} column>
+        {fields.map(field => {
+          const fieldProps = { ...field, ...form.inputs[field.name] }
+          return <Field key={field.name} {...fieldProps} allInputs={form.inputs} />
+        })}
 
         {/* <Div listLeft>
           <code>display:</code>
           <select {...form.inputs.display}>
             <option value="flex">flex</option>
             <option value="inline-flex">inline-flex</option>
-          </select>
-        </Div> */}
-
-        <Div listLeft>
-          <code>justify-content:</code>
-          <select {...form.inputs['justify-content']} onChange={changer('justify-content')}>
-            <option value=""></option>
-            <option value="flex-start">flex-start</option>
-            <option value="flex-end">flex-end</option>
-            <option value="center">center</option>
-            <option value="space-between">space-between</option>
-            <option value="space-around">space-around</option>
-            <option value="space-evenly">space-evenly</option>
-          </select>
-        </Div>
-
-        <Div listLeft>
-          <code>position:</code>
-          <select {...form.inputs['position']} onChange={changer('position')}>
-            <option value=""></option>
-            <option value="relative">relative</option>
-            <option value="absolute">absolute</option>
-            <option value="fixed">fixed</option>
-            <option value="sticky">sticky</option>
-          </select>
-        </Div>
-
-        {/* <Div listLeft>
-          <code>align-content:</code>
-          <select {...form.inputs['align-content']}>
-            <option value="flex-start">flex-start</option>
-            <option value="flex-end">flex-end</option>
-            <option value="center">center</option>
-            <option value="space-between">space-between</option>
-            <option value="space-around">space-around</option>
-            <option value="stretch">stretch</option>
           </select>
         </Div> */}
 
