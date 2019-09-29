@@ -6,9 +6,11 @@ exports[`<Div /> Matches snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   position: absolute;
   position: fixed;
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
@@ -176,9 +178,11 @@ exports[`<Div /> Matches snapshot 1`] = `
 
 @media (max-width:320px) {
   .c0 {
+    position: relative;
     position: absolute;
     position: fixed;
-    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
     -webkit-flex: none;
     -ms-flex: none;
     flex: none;

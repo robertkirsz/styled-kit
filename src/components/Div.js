@@ -6,14 +6,20 @@ import { camelToKebab } from 'utils'
 function doStuff(props) {
   const mgKeys = Object.keys(props.theme.styledKitMediaQueries || {})
 
-  return Object.keys(props).reduce((css, prop) => {
-    const y = stuff[prop]
-    if (mgKeys.includes(prop)) {
-      // console.log(prop)
-      // console.log(props[prop])
-    }
-    return y && !mgKeys.includes(prop) ? `${css}${typeof y === 'function' ? y(props[prop], props) : y}` : css
+  const out = Object.keys(props).reduce((css, prop) => {
+    const value = stuff[prop]
+
+    if (typeof value !== 'function') return css
+    if (mgKeys.includes(prop)) return css
+    if (['', false, undefined].includes(value(props[prop], props))) return css
+
+    // if (props.debug) console.log({ prop, value: value(props[prop], props) })
+
+    return `${css}${value(props[prop], props)}`
   }, '')
+
+  // if (props.debug) console.log(out)
+  return out
 }
 
 function doMediaQueriesStuff(props) {
