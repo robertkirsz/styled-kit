@@ -54,6 +54,19 @@ const fields = [
     ]
   },
   {
+    name: 'align-self',
+    type: 'select',
+    initialValue: '',
+    options: [
+      { value: 'selfAuto', label: 'auto' },
+      { value: 'selfStart', label: 'flex-start' },
+      { value: 'selfEnd', label: 'flex-end' },
+      { value: 'selfCenter', label: 'center' },
+      { value: 'selfBaseline', label: 'baseline' },
+      { value: 'selfStretch', label: 'stretch' }
+    ]
+  },
+  {
     name: 'position',
     type: 'select',
     initialValue: '',
@@ -64,29 +77,19 @@ const fields = [
       { value: 'sticky', label: 'sticky' }
     ]
   },
+  { name: 'square', type: 'text', initialValue: '', parser: textParser },
   { name: 'listTop', type: 'text', initialValue: '', parser: textParser },
   { name: 'listRight', type: 'text', initialValue: '', parser: textParser },
   { name: 'listBottom', type: 'text', initialValue: '', parser: textParser },
   { name: 'listLeft', type: 'text', initialValue: 8, parser: textParser },
-  { name: 'square', type: 'text', initialValue: '', parser: textParser }
+  { name: 'top', type: 'text', initialValue: '', parser: textParser },
+  { name: 'right', type: 'text', initialValue: '', parser: textParser },
+  { name: 'bottom', type: 'text', initialValue: '', parser: textParser },
+  { name: 'left', type: 'text', initialValue: '', parser: textParser }
 ]
 
 const initialValues = {
-  ...fields.reduce((all, field) => {
-    if (field.options)
-      return {
-        ...all,
-        ...field.options.reduce(
-          (prev, curr) => ({
-            ...prev,
-            [curr.value]: false
-          }),
-          {}
-        )
-      }
-
-    return { ...all, [field.name]: field.initialValue }
-  }, {})
+  ...fields.reduce((all, field) => ({ ...all, [field.name]: field.initialValue }), {})
 }
 
 const formatValue = value => (typeof value === 'string' ? `"${value}"` : `{${value}}`)
@@ -97,22 +100,43 @@ export default function DivPlayground() {
   }
 
   const form = useForm(initialValues, onSubmit, {}, false)
-  console.log(form.values)
 
-  const code = Object.keys(stuff).reduce((prev, prop) => {
-    const value = typeof form.values[prop] === 'function' ? form.values[prop]() : form.values[prop]
+  const divProps = {
+    ...fields
+      .filter(field => field.type === 'select')
+      .reduce(
+        (all, field) => ({
+          ...all,
+          ...field.options.reduce(
+            (result, option) => ({
+              ...result,
+              [option.value]: option.label === form.values[field.name]
+            }),
+            {}
+          )
+        }),
+        {}
+      ),
+    ...fields
+      .filter(field => field.type !== 'select')
+      .reduce((prev, curr) => {
+        return { ...prev, [curr.name]: form.values[curr.name] }
+      }, {})
+  }
 
-    if (['', null, false, undefined].includes(value)) return prev
-    if (value === true) return prev + `${prop}\n`
-    return prev + `${prop}=${formatValue(value)}\n`
+  const code = Object.keys(divProps).reduce((prev, prop) => {
+    if (typeof stuff[prop] === 'undefined') return prev
+    if (['', null, false, undefined].includes(divProps[prop])) return prev
+    if (divProps[prop] === true) return prev + `${prop}\n`
+    return prev + `${prop}=${formatValue(divProps[prop])}\n`
   }, '')
 
   return (
     <Div padding={24} column listTop background="pink">
-      <Div as="form" onSubmit={form.handleSubmit} column>
+      <Div as="form" onSubmit={form.handleSubmit} column listTop>
         {fields.map(field => {
           const fieldProps = { ...field, ...form.inputs[field.name] }
-          return <Field key={field.name} {...fieldProps} allInputs={form.inputs} />
+          return <Field key={field.name} {...fieldProps} allValues={form.values} allInputs={form.inputs} />
         })}
 
         {/* <Div listLeft>
@@ -122,67 +146,10 @@ export default function DivPlayground() {
             <option value="inline-flex">inline-flex</option>
           </select>
         </Div> */}
-
-        {/* <Div listLeft>
-          <code>align-self:</code>
-          <select {...form.inputs['align-self']}>
-            <option value="auto">auto</option>
-            <option value="flex-start">flex-start</option>
-            <option value="flex-end">flex-end</option>
-            <option value="center">center</option>
-            <option value="baseline">baseline</option>
-            <option value="stretch">stretch</option>
-          </select>
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>position:</code>
-          <select {...form.inputs.position}>
-            <option value="relative">relative</option>
-            <option value="absolute">absolute</option>
-            <option value="fixed">fixed</option>
-            <option value="sticky">sticky</option>
-          </select>
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>top:</code>
-          <input type="number" {...form.inputs.top} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>right:</code>
-          <input type="number" {...form.inputs.right} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>bottom:</code>
-          <input type="number" {...form.inputs.bottom} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>left:</code>
-          <input type="number" {...form.inputs.left} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>background:</code>
-          <input {...form.inputs.background} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>listLeft:</code>
-          <input type="number" {...form.inputs.listLeft} />
-        </Div> */}
-
-        {/* <Div listLeft>
-          <code>listTop:</code>
-          <input type="number" {...form.inputs.listTop} />
-        </Div> */}
       </Div>
 
       <Div flexNone>
-        <Div {...form.values} debug>
+        <Div {...divProps} debug>
           <Item />
           <Item />
           <Item />

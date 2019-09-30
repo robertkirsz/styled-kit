@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Div from 'components/Div'
 
-const reg = /[^a-z0-9- ]+/g
+const reg = /[^a-z0-9-. ]+/g
 
 export default function Field({
   name = '',
@@ -11,21 +11,16 @@ export default function Field({
   parser = v => v,
   options = [],
   onChange = () => {},
+  allValues,
   allInputs = {},
   ...props
 }) {
   const handleChange = event => {
-    if (type === 'select' && options.length > 0) {
-      options.forEach(option => {
-        allInputs[option.value].onChange(null, event.target.value === option.value)
-      })
-      return
-    }
-
-    if (type === 'text') {
-      const value = (event.target.value || '').toLowerCase().replace(reg, '')
-      onChange(null, parser(value))
-    }
+    // options.forEach(option => {
+    //   allInputs[option.value].onChange(null, event.target.value === option.value)
+    // })
+    const value = (event.target.value || '').toLowerCase().replace(reg, '')
+    onChange(null, parser(value))
   }
 
   if (type === 'text') {
@@ -33,7 +28,7 @@ export default function Field({
       <Div listLeft={4}>
         <code>{name}:</code>
         <span>
-          <Input {...props} style={{ width: `${String(props.value).length * 10 - 2}px` }} onChange={handleChange} />
+          <Input {...props} style={{ width: `${String(props.value).length * 10}px` }} onChange={handleChange} />
         </span>
       </Div>
     )
@@ -41,16 +36,19 @@ export default function Field({
 
   if (type === 'select') {
     return (
-      <Div listLeft>
+      <Div listLeft height={22}>
         <code>{name}:</code>
-        <Select {...props} onChange={handleChange}>
-          <option value=""></option>
-          {options.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </Select>
+        <Label htmlFor={name}>
+          {props.value}
+          <Select id={name} {...props} onChange={handleChange}>
+            <option value=""></option>
+            {options.map(({ label }) => (
+              <option key={label} value={label}>
+                {label}
+              </option>
+            ))}
+          </Select>
+        </Label>
       </Div>
     )
   }
@@ -59,9 +57,26 @@ export default function Field({
 }
 
 const Input = styled.input`
-  background: none;
-  border: 1px solid white;
+  background: white;
+  border: none;
+  padding: 2px 8px;
+  border-radius: 4px;
   font: 16px monospace;
 `
 
-const Select = styled.select``
+const Select = styled.select`
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+
+const Label = styled.label`
+  position: relative;
+  background: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font: 16px monospace;
+`
