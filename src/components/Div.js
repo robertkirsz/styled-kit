@@ -3,24 +3,34 @@ import styled from 'styled-components'
 import stuff from 'stuff'
 import { camelToKebab } from 'utils'
 
-function doStuff(props) {
-  const mgKeys = Object.keys(props.theme.styledKitMediaQueries || {})
-
-  const out = Object.keys(props).reduce((css, prop) => {
-    const value = stuff[prop]
-
-    if (typeof value !== 'function') return css
-    if (mgKeys.includes(prop)) return css
-    if (['', false, undefined].includes(value(props[prop], props))) return css
-
-    // if (props.debug) console.log({ prop, value: value(props[prop], props) })
-
-    return `${css}${value(props[prop], props)}`
-  }, '')
-
-  // if (props.debug) console.log(out)
-  return out
+const memoize = fn => {
+  let cache = {}
+  return (...args) => {
+    let n = args[0]
+    if (n in cache) {
+      // console.log('Fetching from cache', n)
+      return cache[n]
+    } else {
+      // console.log('Calculating result', n)
+      let result = fn(n)
+      cache[n] = result
+      return result
+    }
+  }
 }
+
+const stuffKeys = Object.keys(stuff)
+const isStuffKey = memoize(item => stuffKeys.includes(item))
+
+const createCss = props => (css, prop) => {
+  const value = stuff[prop](props[prop], props)
+  return !['', false, undefined].includes(value) ? `${css}${value}` : css
+}
+
+const doStuff = props =>
+  Object.keys(props)
+    .filter(isStuffKey)
+    .reduce(createCss(props), '')
 
 function doMediaQueriesStuff(props) {
   if (!props.theme || !props.theme.styledKitMediaQueries) return
