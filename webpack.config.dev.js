@@ -6,6 +6,9 @@ module.exports = {
     host: '0.0.0.0', // Allows access from external devices
     port: 3333
   },
+  output: {
+    path: `${__dirname}/demo`
+  },
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' }]
   },
