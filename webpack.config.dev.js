@@ -1,10 +1,13 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
+console.log('❤️')
+
 module.exports = {
   mode: 'development',
   devServer: {
     host: '0.0.0.0', // Allows access from external devices
-    port: 3333
+    port: 3333,
+    stats: 'errors-only'
   },
   output: {
     path: `${__dirname}/demo`

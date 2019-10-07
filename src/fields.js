@@ -13,8 +13,8 @@ export default [
     ]
   },
   { name: 'wraps', type: 'checkbox', displayName: 'flex-wrap', initialValue: false },
-  { name: 'width', type: 'text', initialValue: 120, parser: textParser },
-  { name: 'height', type: 'text', initialValue: 100, parser: textParser },
+  { name: 'width', type: 'text', initialValue: 300, parser: textParser },
+  { name: 'height', type: 'text', initialValue: 300, parser: textParser },
   { name: 'margin', type: 'text', initialValue: '', parser: textParser },
   { name: 'padding', type: 'text', initialValue: 8, parser: textParser },
   { name: 'background', type: 'text', initialValue: 'powderblue' },

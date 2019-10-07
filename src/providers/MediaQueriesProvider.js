@@ -39,5 +39,8 @@ export default class MediaQueriesProvider extends Component {
     queries: getQueries(this.props.queries)
   }
 
-  render = () => <ThemeProvider theme={{ queries: this.state.queries }} {...this.props} />
+  render = () => {
+    console.log({ queries: this.state.queries, ...this.props.theme })
+    return <ThemeProvider {...this.props} theme={{ queries: this.state.queries, ...this.props.theme }} />
+  }
 }

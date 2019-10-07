@@ -8,22 +8,31 @@ export const queries = [
 ]
 
 // Iterates through all the queries and creates a media template for each one
+// prettier-ignore
 export const screenSize = queries.reduce(
   (result, query) => ({
     ...result,
-    [query.name]: (...args) =>
-      css`
-        @media only screen and ${query.value} {
-          ${css(...args)};
-        }
-      `
+    [query.name]: (...args) => css`@media ${query.value} { ${css(...args)}; }`
   }),
   {}
 )
+
+// prettier-ignore
+export const small = (...args) => css`@media (max-width: 1023px) { ${css(...args)}; }`
+// prettier-ignore
+export const large = (...args) => css`@media (min-width: 1024px) { ${css(...args)}; }`
 
 export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     font: 16px sans-serif;
+    background: pink;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    ${large`justify-content: center;`}
   }
 `

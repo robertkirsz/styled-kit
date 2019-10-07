@@ -1,25 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import stuff from 'stuff'
 import fields from 'fields'
 import useForm from 'hooks/useForm'
-
 import Div from 'components/Div'
+import Container from 'components/Container'
+import Row from 'components/Row'
+import Col from 'components/Col'
 import Field from 'components/Field'
-
-const initialValues = {
-  ...fields.reduce((all, field) => ({ ...all, [field.name]: field.initialValue }), {})
-}
 
 const formatValue = value => (typeof value === 'string' ? `"${value}"` : `{${value}}`)
 
 export default function DivPlayground() {
-  async function onSubmit(value) {
-    console.log('onSubmit:', value)
-  }
-
-  const form = useForm(initialValues, onSubmit, {}, false)
+  const form = useForm({
+    ...fields.reduce((all, field) => ({ ...all, [field.name]: field.initialValue }), {})
+  })
 
   const divProps = {
     ...fields
@@ -52,30 +47,62 @@ export default function DivPlayground() {
   }, '')
 
   return (
-    <Div padding={24} listLeft justifyBetween wraps background="pink">
-      <Div as="form" onSubmit={form.handleSubmit} column>
-        {fields.map(field => {
-          const fieldProps = { ...field, ...form.inputs[field.name] }
-          return <Field key={field.name} {...fieldProps} />
-        })}
-      </Div>
+    <Container>
+      <Row small={{ listTop: 40 }}>
+        <Col
+          small={12}
+          large={4}
+          as="form"
+          onSubmit={form.handleSubmit}
+          wraps
+          listRight={16}
+          relative
+          z="100"
+          background="rgba(100%, 75.3%, 79.6%, 0.5)"
+        >
+          {fields.map(field => {
+            const fieldProps = { ...field, ...form.inputs[field.name] }
+            return <Field key={field.name} {...fieldProps} />
+          })}
+        </Col>
 
-      <Div column listTop={24}>
-        <Div {...divProps} css="transition: 300ms;">
-          <Item>A</Item>
-          <Item>B</Item>
-          <Item>C</Item>
-        </Div>
+        <Col small={12} large={4} justifyCenter>
+          <Div {...divProps} css="transition: 300ms;">
+            <Item>
+              <span role="img" aria-label="Doggy">
+                🐶
+              </span>
+            </Item>
 
-        <pre css="margin: 0;">{code}</pre>
-      </Div>
-    </Div>
+            <Item>
+              <span role="img" aria-label="Kitty">
+                🐱
+              </span>
+            </Item>
+          </Div>
+        </Col>
+
+        <Col
+          small={12}
+          large={4}
+          as="pre"
+          relative
+          margin={0}
+          z="100"
+          background="rgba(100%, 75.3%, 79.6%, 0.5)"
+          css="font-size: 20px;"
+        >
+          {code}
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
 const Item = styled.div`
   padding: 6px;
-  background: tomato;
-  border: 2px solid red;
+  border: 2px solid rgb(255, 192, 203);
+  border-radius: 4px;
   transition: 300ms;
+  font-size: 40px;
 `

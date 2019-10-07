@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import usePrevious from 'hooks/usePrevious'
 
-export default function useForm(initialValues = {}, onSubmit = null, validators = {}, addValidationStatus = true) {
+export default function useForm(initialValues = {}, onSubmit = () => {}, validators = {}, addValidationStatus = false) {
   const [values, setValues] = useState(initialValues)
   const previousValues = usePrevious(initialValues)
 
@@ -94,8 +94,6 @@ export default function useForm(initialValues = {}, onSubmit = null, validators 
 
   const handleSubmit = async event => {
     event.preventDefault()
-
-    if (!onSubmit) return
 
     touchAllFields()
     const isFormValid = validateAllFields()

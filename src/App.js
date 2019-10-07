@@ -1,41 +1,42 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-
 import { GlobalStyles } from 'styles'
-
-import Div from 'components/Div'
-// import MediaQueriesProvider from 'providers/MediaQueriesProvider'
-
 import DivPlayground from 'examples/DivPlayground'
-// import GridExample from 'examples/GridExample'
-// import HeightTransitionExample from 'examples/HeightTransitionExample'
-// import SliderExample from 'examples/SliderExample'
+import MediaQueriesProvider from 'providers/MediaQueriesProvider'
 
-// const queries = [{ name: 'mediumUp', value: '(min-width: 640px)' }, { name: 'largeUp', value: '(min-width: 1024px)' }]
-
-export const styledKitMediaQueries = {
-  small: '(max-width: 320px)',
-  medium: '(min-width: 321px) and (max-width: 768px)',
-  large: '(min-width: 769px)'
-}
-
-export default function App() {
-  return (
+export default () => (
+  <>
+    <GlobalStyles />
     <>
-      <ThemeProvider theme={{ styledKitMediaQueries }}>
-        <Div column listTop={16}>
-          <DivPlayground />
-
-          {/* <MediaQueriesProvider queries={queries}>
-            <GridExample />
-          </MediaQueriesProvider>
-
-          <HeightTransitionExample />
-          <SliderExample /> */}
-        </Div>
-      </ThemeProvider>
-
-      <GlobalStyles />
+      <code css="font-size: 40px; margin: 8px;">{'<Div />'}</code>
+      <MediaQueriesProvider
+        queries={[{ name: 'mediumUp', value: '(min-width: 640px)' }, { name: 'largeUp', value: '(min-width: 1024px)' }]}
+        theme={{
+          styledKitMediaQueries: {
+            small: '(max-width: 1023px)',
+            medium: '(min-width: 640px)',
+            large: '(min-width: 1024px)'
+          }
+        }}
+      >
+        <DivPlayground />
+      </MediaQueriesProvider>
     </>
-  )
-}
+  </>
+)
+
+/*
+TODO: bring these back someday...
+
+<MediaQueriesProvider
+  queries={[
+    { name: 'mediumUp', value: '(min-width: 640px)' },
+    { name: 'largeUp', value: '(min-width: 1024px)' }
+  ]}
+>
+  <GridExample />
+</MediaQueriesProvider>
+
+<HeightTransitionExample />
+
+<SliderExample />
+*/
