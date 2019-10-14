@@ -42,28 +42,64 @@ export default function DivPlayground() {
   const code = Object.keys(divProps).reduce((prev, prop) => {
     if (typeof stuff[prop] === 'undefined') return prev
     if (['', null, false, undefined].includes(divProps[prop])) return prev
-    if (divProps[prop] === true) return prev + `${prop}\n`
-    return prev + `${prop}=${formatValue(divProps[prop])}\n`
+    if (divProps[prop] === true) return prev + `  ${prop}\n`
+    return prev + `  ${prop}=${formatValue(divProps[prop])}\n`
   }, '')
+
+  const get = what => ({ ...fields.find(field => field.name === what), ...form.inputs[what] })
 
   return (
     <Container>
       <Row small={{ listTop: 40 }}>
         <Col
+          as="form"
+          column
           small={12}
           large={4}
-          as="form"
-          onSubmit={form.handleSubmit}
-          wraps
-          listRight={16}
+          listTop
           relative
           z="100"
           background="rgba(100%, 75.3%, 79.6%, 0.5)"
+          onSubmit={form.handleSubmit}
         >
-          {fields.map(field => {
-            const fieldProps = { ...field, ...form.inputs[field.name] }
-            return <Field key={field.name} {...fieldProps} />
-          })}
+          <Div listLeft>
+            <Field {...get('flex-direction')} />
+            <Field {...get('wraps')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('justify-content')} />
+            <Field {...get('align-items')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('align-content')} />
+            <Field {...get('align-self')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('position')} />
+            <Field {...get('z')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('top')} />
+            <Field {...get('right')} />
+            <Field {...get('left')} />
+            <Field {...get('bottom')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('width')} />
+            <Field {...get('height')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('margin')} />
+            <Field {...get('padding')} />
+          </Div>
+
+          <Field {...get('background')} />
         </Col>
 
         <Col small={12} large={4} justifyCenter>
@@ -92,7 +128,7 @@ export default function DivPlayground() {
           background="rgba(100%, 75.3%, 79.6%, 0.5)"
           css="font-size: 20px;"
         >
-          {code}
+          {code ? `<Div\n${code}/>` : '<Div />'}
         </Col>
       </Row>
     </Container>

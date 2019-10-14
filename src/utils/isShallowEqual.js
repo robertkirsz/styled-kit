@@ -1,9 +1,9 @@
 export default (firstObject, secondObject) => {
-  for (let key in firstObject) {
+  for (const key in firstObject) {
     if (!(key in secondObject) || firstObject[key] !== secondObject[key]) return false
   }
 
-  for (let key in secondObject) {
+  for (const key in secondObject) {
     if (!(key in firstObject) || firstObject[key] !== secondObject[key]) return false
   }
 

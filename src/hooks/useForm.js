@@ -82,8 +82,8 @@ export default function useForm(initialValues = {}, onSubmit = () => {}, validat
     // These two props are CCL-specific and used to display validation status
     // prettier-ignore
     if (addValidationStatus) {
-      currentInput.validationStatus = (touched[currentInputName] || null) && ((errors[currentInputName] && 'error'));
-      currentInput.validationMessage = touched[currentInputName] && errors[currentInputName];
+      currentInput.validationStatus = (touched[currentInputName] || null) && ((errors[currentInputName] && 'error'))
+      currentInput.validationMessage = touched[currentInputName] && errors[currentInputName]
     }
 
     return {

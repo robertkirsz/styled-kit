@@ -2,9 +2,9 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { render } from '@testing-library/react'
 
-import { styledKitMediaQueries } from '../../App'
-import Div from '../Div'
-import stuff from '../../stuff'
+import { styledKitMediaQueries } from '../App'
+import Div from './Div'
+import stuff from '../stuff'
 
 const props = Object.keys(stuff).reduce((result, prop) => {
   if (!stuff[prop]) return result

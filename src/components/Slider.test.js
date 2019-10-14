@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, wait } from '@testing-library/react'
 
-import Slider from '../Slider'
+import Slider from './Slider'
 
 describe('<Slider />', () => {
   test('Renders children properly', () => {

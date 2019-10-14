@@ -4,15 +4,15 @@ import stuff from 'stuff'
 import { camelToKebab } from 'utils'
 
 const memoize = fn => {
-  let cache = {}
+  const cache = {}
   return (...args) => {
-    let n = args[0]
+    const n = args[0]
     if (n in cache) {
       // console.log('Fetching from cache', n)
       return cache[n]
     } else {
       // console.log('Calculating result', n)
-      let result = fn(n)
+      const result = fn(n)
       cache[n] = result
       return result
     }
@@ -49,7 +49,7 @@ function doMediaQueriesStuff(props) {
         ? declaration
         : Object.keys(props[query]).reduce((all, property) => {
             const value = props[query][property]
-            let foo = stuff[property]
+            const foo = stuff[property]
 
             if (!foo) return `${all}${camelToKebab(property)}:${value};`
 

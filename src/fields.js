@@ -88,5 +88,6 @@ export default [
   { name: 'top', type: 'text', initialValue: '', parser: textParser },
   { name: 'right', type: 'text', initialValue: '', parser: textParser },
   { name: 'bottom', type: 'text', initialValue: '', parser: textParser },
-  { name: 'left', type: 'text', initialValue: '', parser: textParser }
+  { name: 'left', type: 'text', initialValue: '', parser: textParser },
+  { name: 'z', type: 'text', displayName: 'z-index', initialValue: '', parser: textParser }
 ]
