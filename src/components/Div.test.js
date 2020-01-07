@@ -7,7 +7,8 @@ import Div from './Div'
 import stuff from '../stuff'
 
 const props = Object.keys(stuff).reduce((result, prop) => {
-  if (!stuff[prop]) return result
+  // TODO: Ignore shorthand helper? They duplicate CSS styles.
+  if (['mTop', 'mRight', 'mBottom', 'mLeft', 'pTop', 'pRight', 'pBottom', 'pLeft'].includes(prop)) return result
   return { ...result, [prop]: typeof stuff[prop] === 'function' ? 1 : true }
 }, {})
 
