@@ -51,17 +51,7 @@ export default function DivPlayground() {
   return (
     <Container>
       <Row small={{ listTop: 40 }}>
-        <Col
-          as="form"
-          column
-          small={12}
-          large={4}
-          listTop
-          relative
-          z="100"
-          background="rgba(100%, 75.3%, 79.6%, 0.5)"
-          onSubmit={form.handleSubmit}
-        >
+        <Col as="form" column small={12} large={4} listTop onSubmit={form.handleSubmit}>
           <Div listLeft>
             <Field {...get('flex-direction')} />
             <Field {...get('wraps')} />
@@ -69,11 +59,11 @@ export default function DivPlayground() {
 
           <Div listLeft>
             <Field {...get('justify-content')} />
-            <Field {...get('align-items')} />
+            <Field {...get('align-content')} />
           </Div>
 
           <Div listLeft>
-            <Field {...get('align-content')} />
+            <Field {...get('align-items')} />
             <Field {...get('align-self')} />
           </Div>
 
@@ -100,34 +90,27 @@ export default function DivPlayground() {
           </Div>
 
           <Field {...get('background')} />
+
+          <Div listLeft>
+            <Field {...get('listLeft')} />
+            <Field {...get('listRight')} />
+          </Div>
+
+          <Div listLeft>
+            <Field {...get('listTop')} />
+            <Field {...get('listBottom')} />
+          </Div>
         </Col>
 
         <Col small={12} large={4} justifyCenter>
           <Div {...divProps} css="transition: 300ms;">
-            <Item>
-              <span role="img" aria-label="Doggy">
-                🐶
-              </span>
-            </Item>
-
-            <Item>
-              <span role="img" aria-label="Kitty">
-                🐱
-              </span>
-            </Item>
+            <Item />
+            <Item />
+            <Item />
           </Div>
         </Col>
 
-        <Col
-          small={12}
-          large={4}
-          as="pre"
-          relative
-          margin={0}
-          z="100"
-          background="rgba(100%, 75.3%, 79.6%, 0.5)"
-          css="font-size: 20px;"
-        >
+        <Col small={12} large={4} as="pre" margin={0}>
           {code ? `<Div\n${code}/>` : '<Div />'}
         </Col>
       </Row>
@@ -136,8 +119,8 @@ export default function DivPlayground() {
 }
 
 const Item = styled.div`
-  padding: 6px;
-  border: 2px solid rgb(255, 192, 203);
+  padding: 16px;
+  background: gray;
   border-radius: 4px;
   transition: 300ms;
   font-size: 40px;

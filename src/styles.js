@@ -26,13 +26,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     font: 16px sans-serif;
-    background: pink;
+    background: #e2e1e0;
   }
 
   #root {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    ${large`justify-content: center;`}
   }
 `

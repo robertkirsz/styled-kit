@@ -88,11 +88,12 @@ const Input = styled.input`
   padding: 2px 8px;
   border-radius: 4px;
   font: 16px monospace;
+  min-width: 8px;
   transition: all 300ms, width 100ms;
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 8px 2px hotpink;
+    box-shadow: 0 0 8px 2px gray;
   }
 `
 

@@ -6,6 +6,7 @@ export default class HeightTransition extends Component {
   static propTypes = {
     isActive: PropTypes.bool,
     style: PropTypes.shape({}),
+    minHeight: PropTypes.number,
     contentStyle: PropTypes.shape({}),
     children: PropTypes.node,
     heightProperty: PropTypes.string,
@@ -13,6 +14,7 @@ export default class HeightTransition extends Component {
   }
 
   static defaultProps = {
+    minHeight: 0,
     heightProperty: 'clientHeight',
     timeout: 500
   }
@@ -20,7 +22,7 @@ export default class HeightTransition extends Component {
   childrenRef = createRef()
 
   state = {
-    height: this.props.isActive ? 'auto' : 0,
+    height: this.props.isActive ? 'auto' : this.props.minHeight,
     isAnimating: false
   }
 
@@ -32,11 +34,15 @@ export default class HeightTransition extends Component {
     }
 
     if (!this.props.isActive && prevProps.isActive) {
-      this.doubleUpdate('height', snapshot, 0)
+      this.doubleUpdate('height', snapshot, this.props.minHeight)
     }
   }
 
-  handleTransitionEnd = () => this.setState(({ height }) => ({ height: !height ? 0 : 'auto', isAnimating: false }))
+  handleTransitionEnd = () =>
+    this.setState(({ height }) => ({
+      height: !height || height === this.props.minHeight ? this.props.minHeight : 'auto',
+      isAnimating: false
+    }))
 
   getChildrenHeight = () => this.childrenRef.current[this.props.heightProperty]
 
@@ -66,7 +72,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   ${props => css`
-    opacity: ${props.isActive ? 1 : 0};
+    opacity: ${props.isActive || props.minHeight > 0 ? 1 : 0};
     transition: all ${props.timeout}ms cubic-bezier(0.23, 1, 0.32, 1);
     ${(!props.isActive || props.isAnimating) && 'overflow: hidden;'}
 
