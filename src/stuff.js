@@ -32,6 +32,7 @@ export default {
   contentAround: use => use && 'align-content: space-around;',
   contentStretch: use => use && 'align-content: stretch;',
   // Self-positioning
+  flex: value => `flex: ${value};`,
   flexNone: use => use && 'flex: none;',
   selfAuto: use => use && 'align-self: auto;',
   selfStart: use => use && 'align-self: flex-start;',
