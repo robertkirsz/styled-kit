@@ -40,7 +40,9 @@ export default function Field({
       height={32}
       className={className}
       itemsCenter
+      justifyEnd
       clickable
+      relative
       css={`
         transition: 300ms;
         opacity: ${isEmpty ? 0.3 : 1};
@@ -50,17 +52,9 @@ export default function Field({
         }
       `}
     >
-      <code>{displayName || name}:</code>
+      <Code>{displayName || name}:</Code>
 
-      {type === 'text' && (
-        <Input
-          {...props}
-          id={name}
-          style={{ width: String(props.value).length * 10 }}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      )}
+      {type === 'text' && <Input {...props} id={name} onChange={handleChange} onKeyDown={handleKeyDown} />}
 
       {type === 'select' && (
         <SelectWrapper>
@@ -81,19 +75,24 @@ export default function Field({
   )
 }
 
-const Input = styled.input`
+const InputStyles = `
   height: 22px;
+  width: 30px;
   background: white;
+  padding: 4px;
   border: none;
-  padding: 2px 8px;
   border-radius: 4px;
-  font: 16px monospace;
+  font: 12px monospace;
+`
+
+const Input = styled.input`
+  ${InputStyles}
   min-width: 8px;
-  transition: all 300ms, width 100ms;
   outline: none;
+  transition: box-shadow 0.3s;
 
   &:focus {
-    box-shadow: 0 0 8px 2px gray;
+    box-shadow: 5px 5px 12px #489dcf, -5px -5px 12px #62d5ff;
   }
 `
 
@@ -104,13 +103,14 @@ const Select = styled.select`
   left: 0;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `
 
 const SelectWrapper = styled.div`
-  height: 22px;
-  position: relative;
-  background: white;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font: 16px monospace;
+  ${InputStyles}
+`
+
+const Code = styled.code`
+  font: 12px monospace;
+  white-space: nowrap;
 `

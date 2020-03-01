@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import Div from './Div'
@@ -8,18 +7,21 @@ const getSize = size => css`
   max-width: ${(100 / 12) * size}%;
 `
 
-const propTypes = {
-  small: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  medium: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  large: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  offset: PropTypes.number,
-  offsetSmall: PropTypes.number,
-  offsetMedium: PropTypes.number,
-  offsetLarge: PropTypes.number
-}
+export const Container = styled(Div)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+`
 
-// prettier-ignore
-const Col = styled(Div)`
+export const Row = styled(Div)`
+  flex: 1 1 auto;
+  flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
+  flex-wrap: wrap;
+`
+
+export const Column = styled(Div)`
   flex: 1 0 0;
   max-width: 100%;
   padding-left: 8px;
@@ -32,18 +34,14 @@ const Col = styled(Div)`
     ${Number.isInteger(small) && getSize(small)}
     ${Number.isInteger(offsetSmall) && `margin-left: ${(100 / 12) * offsetSmall}%;`}
 
-    ${theme.queries.mediumUp`
+    ${theme.styledKitMediaQueries.medium`
       ${Number.isInteger(medium) && getSize(medium)}
       ${Number.isInteger(offsetMedium) && `margin-left: ${(100 / 12) * offsetMedium}%;`}
     `}
 
-    ${theme.queries.largeUp`
+    ${theme.styledKitMediaQueries.large`
       ${Number.isInteger(large) && getSize(large)}
       ${Number.isInteger(offsetLarge) && `margin-left: ${(100 / 12) * offsetLarge}%;`}
     `}
   `}
 `
-
-Col.propTypes = propTypes
-
-export default Col

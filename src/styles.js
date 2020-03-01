@@ -26,7 +26,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     font: 16px sans-serif;
-    background: #e2e1e0;
+    background: #55b9f3;
+    box-sizing: border-box;
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
   }
 
   #root {

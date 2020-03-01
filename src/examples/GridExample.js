@@ -1,44 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import ScreenSizeInfo from 'helpers/ScreenSizeInfo'
-import { withSizes } from 'providers/ScreenSizeProvider'
-import GridHelper from 'helpers/GridHelper'
-
 import Div from 'components/Div'
-import Container from 'components/Container'
-import Row from 'components/Row'
-import Col from 'components/Col'
+import { Container, Row, Column } from 'components/Grid'
 
-const GridExample = props => (
-  <Div column relative padding="24px 0" {...props}>
-    <ScreenSizeInfo justifyCenter itemsCenter />
+import ScreenSizeInfo from 'examples/helpers/ScreenSizeInfo'
+import GridHelper from 'examples/helpers/GridHelper'
 
-    <GridHelper />
+export default function(props) {
+  return (
+    <Div column relative padding="24px 0" {...props}>
+      <ScreenSizeInfo justifyCenter itemsCenter />
 
-    <Container>
-      <Row>
-        <Col small={12} medium={4} large={3}>
-          <Item>Small 12 Medium 4 Large 3</Item>
-        </Col>
+      <GridHelper />
 
-        <Col small={12} medium={4} large={3}>
-          <Item>Small 12 Medium 4 Large 3</Item>
-        </Col>
+      <Container>
+        <Row>
+          <Column small={12} medium={4} large={3}>
+            <Item>Small 12 Medium 4 Large 3</Item>
+          </Column>
 
-        <Col small={12} medium={4} large={3}>
-          <Item>Small 12 Medium 4 Large 3</Item>
-        </Col>
+          <Column small={12} medium={4} large={3}>
+            <Item>Small 12 Medium 4 Large 3</Item>
+          </Column>
 
-        <Col small={12} medium={12} large={3}>
-          <Item>Small 12 Medium 12 Large 3</Item>
-        </Col>
-      </Row>
-    </Container>
-  </Div>
-)
+          <Column small={12} medium={4} large={3}>
+            <Item>Small 12 Medium 4 Large 3</Item>
+          </Column>
 
-export default withSizes(GridExample)
+          <Column small={12} medium={12} large={3}>
+            <Item>Small 12 Medium 12 Large 3</Item>
+          </Column>
+        </Row>
+      </Container>
+    </Div>
+  )
+}
 
 const Item = styled.div`
   padding: 8px;

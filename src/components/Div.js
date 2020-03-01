@@ -1,30 +1,16 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import stuff from 'stuff'
-import { camelToKebab } from 'utils'
 
-const memoize = fn => {
-  const cache = {}
-  return (...args) => {
-    const n = args[0]
-    if (n in cache) {
-      // console.log('Fetching from cache', n)
-      return cache[n]
-    } else {
-      // console.log('Calculating result', n)
-      const result = fn(n)
-      cache[n] = result
-      return result
-    }
-  }
-}
+// TODO: move here
+import { memoize, camelToKebab } from 'utils'
 
 const stuffKeys = Object.keys(stuff)
 const isStuffKey = memoize(item => stuffKeys.includes(item))
 
 const createCss = props => (css, prop) => {
-  const value = stuff[prop](props[prop], props)
-  return !['', false, undefined].includes(value) ? `${css}${value}` : css
+  const value = typeof stuff[prop] === 'function' ? stuff[prop](props[prop], props) : stuff[prop]
+  return ['', false, undefined].includes(value) ? css : `${css}${value}`
 }
 
 const doStuff = props =>
@@ -32,10 +18,9 @@ const doStuff = props =>
     .filter(isStuffKey)
     .reduce(createCss(props), '')
 
-function doMediaQueriesStuff(props) {
-  if (!props.theme || !props.theme.styledKitMediaQueries) return
-
-  const queryNames = Object.keys(props.theme.styledKitMediaQueries)
+function doMediaQueriesStuff(props = {}) {
+  const { styledKitMediaQueries = {} } = props.theme || {}
+  const queryNames = Object.keys(styledKitMediaQueries)
 
   if (!queryNames.length) return
 
@@ -44,30 +29,38 @@ function doMediaQueriesStuff(props) {
 
     if (!declaration) return all
 
-    const allDeclarations =
-      typeof declaration === 'string'
-        ? declaration
-        : Object.keys(props[query]).reduce((all, property) => {
-            const value = props[query][property]
-            const foo = stuff[property]
+    if (typeof declaration === 'string') return { ...all, [query]: declaration }
 
-            if (!foo) return `${all}${camelToKebab(property)}:${value};`
+    if (Array.isArray(declaration))
+      return {
+        ...all,
+        [query]: declaration.reduce((all, property) => {
+          const stuffProperty = stuff[property]
+          if (typeof stuffProperty !== 'string') return all
+          return `${all}${stuffProperty}`
+        }, '')
+      }
 
-            const declaration = typeof foo === 'function' ? foo(value, props) : foo
-
-            return `${all}${declaration}`
-          }, '')
-
-    return { ...all, [query]: allDeclarations }
+    return {
+      ...all,
+      [query]: Object.keys(declaration).reduce((all, property) => {
+        const value = declaration[property]
+        const stuffProperty = stuff[property]
+        if (!stuffProperty) return `${all}${camelToKebab(property)}:${value};`
+        return `${all}${typeof stuffProperty === 'function' ? stuffProperty(value, props) : stuffProperty}`
+      }, '')
+    }
   }, {})
 
-  const cssString = queryNames.reduce((all, query) => {
-    if (!queryNameToValuesMap[query]) return all
-
-    return `${all}@media ${props.theme.styledKitMediaQueries[query]} {${queryNameToValuesMap[query]}}`
-  }, '')
-
-  return cssString
+  return queryNames.reduce(
+    (all, query) =>
+      !queryNameToValuesMap[query]
+        ? all
+        : css`
+            ${all} ${styledKitMediaQueries[query]`${queryNameToValuesMap[query]}`}
+          `,
+    ''
+  )
 }
 
 export default styled.div`
@@ -75,3 +68,17 @@ export default styled.div`
   ${doStuff}
   ${doMediaQueriesStuff}
 `
+
+export const createQueries = sizes =>
+  Object.entries(sizes).reduce(
+    (result, [key, value]) => ({
+      ...result,
+      [key]: (...args) =>
+        css`
+          @media ${value} {
+            ${css(...args)};
+          }
+        `
+    }),
+    {}
+  )

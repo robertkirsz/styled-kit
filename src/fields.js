@@ -17,7 +17,7 @@ export default [
   { name: 'height', type: 'text', initialValue: 300, parser: textParser },
   { name: 'margin', type: 'text', initialValue: '', parser: textParser },
   { name: 'padding', type: 'text', initialValue: 8, parser: textParser },
-  { name: 'background', type: 'text', initialValue: 'white' },
+  { name: 'background', type: 'text', initialValue: '' },
   {
     name: 'justify-content',
     type: 'select',
