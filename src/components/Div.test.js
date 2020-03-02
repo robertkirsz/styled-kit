@@ -2,9 +2,14 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { render } from '@testing-library/react'
 
-import { styledKitMediaQueries } from '../App'
-import Div from './Div'
+import Div, { createQueries } from './Div'
 import stuff from '../stuff'
+
+export const styledKitMediaQueries = createQueries({
+  small: '(max-width: 639px)',
+  medium: '(min-width: 640px)',
+  large: '(min-width: 1024px)'
+})
 
 const props = Object.keys(stuff).reduce((result, prop) => {
   // TODO: Ignore shorthand helper? They duplicate CSS styles.

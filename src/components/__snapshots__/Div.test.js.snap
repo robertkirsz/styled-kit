@@ -113,6 +113,7 @@ exports[`<Div /> Matches snapshot 1`] = `
   min-height: 1px;
   max-width: 1px;
   max-height: 1px;
+  border-radius: 1px;
   margin: 1px;
   margin-top: 1px;
   margin-right: 1px;
@@ -146,6 +147,7 @@ exports[`<Div /> Matches snapshot 1`] = `
   height: 1px;
   min-height: 100vh;
   display: none;
+  border-radius: 50%;
   cursor: pointer;
   pointer-events: none;
   position: absolute;
@@ -288,6 +290,7 @@ exports[`<Div /> Matches snapshot 1`] = `
     min-height: 1px;
     max-width: 1px;
     max-height: 1px;
+    border-radius: 1px;
     margin: 1px;
     margin-top: 1px;
     margin-right: 1px;
@@ -321,6 +324,7 @@ exports[`<Div /> Matches snapshot 1`] = `
     height: 1px;
     min-height: 100vh;
     display: none;
+    border-radius: 50%;
     cursor: pointer;
     pointer-events: none;
     position: absolute;
@@ -397,6 +401,7 @@ exports[`<Div /> Matches snapshot 1`] = `
   class="c0"
   data-testid="test"
   height="1"
+  radius="1"
   width="1"
   z="1"
 />

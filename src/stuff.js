@@ -104,7 +104,6 @@ export default {
     ${layerStyles}
     background: ${value};
     opacity: 0.2;
-      pointer-events: none;
-    }
-  `
+    pointer-events: none;
+  }`
 }
