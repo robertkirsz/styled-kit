@@ -18,7 +18,7 @@ import Div from 'styled-kit/Div'
 </Div>
 ```
 
-Div is a helper wrapper component that maks it ease to postion it's children using flex attributes.
+Div is a helper wrapper component that makes it easy to position its children using flex attributes.
 
 ## Live demo
 
@@ -66,7 +66,7 @@ Div is a helper wrapper component that maks it ease to postion it's children usi
 | `selfBaseline` | `align-self: baseline;` |
 | `selfStretch` | `align-self: stretch;` |
 
-Props that looks like `name={X}` accepts value that either number or string. If it's number and, it will be converted to pixel for props that require them, so:
+Props that looks like `name={X}` accepts a value that is either number or string. If it's number and, it will be converted to pixels for props that require them, so:
 
 `width={100}`: `width: 100px;`
 `height="100"`: `height: 100%;`
@@ -89,17 +89,17 @@ Props that looks like `name={X}` accepts value that either number or string. If 
 | Prop | CSS |
 | --- | --- |
 | `margin={X}` | `margin: X;` |
-| `mTop={X}` | `margin-top: X;` |
-| `mRight={X}` | `margin-right: X;` |
-| `mBottom={X}` | `margin-bottom: X;` |
-| `mLeft={X}` | `margin-left: X;` |
+| `marginTop={X}` | `margin-top: X;` |
+| `marginRight={X}` | `margin-right: X;` |
+| `marginBottom={X}` | `margin-bottom: X;` |
+| `marginLeft={X}` | `margin-left: X;` |
 | `padding={X}` | `padding: X;` |
-| `pTop={X}` | `padding-top: X;` |
-| `pRight={X}` | `padding-right: X;` |
-| `pBottom={X}` | `padding-bottom: X;` |
-| `pLeft={X}` | `padding-left: X;` |
+| `paddingTop={X}` | `padding-top: X;` |
+| `paddingRight={X}` | `padding-right: X;` |
+| `paddingBottom={X}` | `padding-bottom: X;` |
+| `paddingLeft={X}` | `padding-left: X;` |
 
-Instead of using `pTop` or `mLeft`, you can also use unabreiviated `paddingTop`, `marginLeft`, and so on.
+Instead of using `paddingTop` or `marginLeft`, you can also use abbreviated `pTop`, `mLeft`, and so on.
 
 ### Position
 
@@ -117,7 +117,7 @@ Instead of using `pTop` or `mLeft`, you can also use unabreiviated `paddingTop`,
 
 ### Lists
 
-Add margin to every child except first or last one, depending on chosen direction. Used to add space between child items.
+Add margin to every child except first or last one, depending on the chosen direction. Used to add space between child items.
 
 | Prop | CSS |
 | --- | --- |
@@ -126,30 +126,30 @@ Add margin to every child except first or last one, depending on chosen directio
 | `listTop={X}` | `> *:not(:first-child) { margin-top: {X}; }` |
 | `listBottom={X}` | `> *:not(:last-child) { margin-bottom: {X}; }` |
 
-X is 8px by default
+`X` is optional here and is 8px by default
 
 ### Helpers
 
 | Prop | CSS |
 | --- | --- |
-| `background={X}` | `background: ${value};` |
+| `background={X}` | `background: ${X};` |
 | `backgroundImage={URL}` | `background-image: url({URL});` |
 | `cover` | `background-size: cover;` |
 | `contain` | `background-size: contain;` |
 | `layer` | `position: absolute; top: 0; right: 0; bottom: 0; left: 0;` |
-| `square={}` | `width: {X}; height: {X};` |
+| `square={X}` | `width: {X}; height: {X};` |
 | `circle` | `border-radius: 50%;` |
 | `fullHeight` | `min-height: 100vh;` |
 | `hide` | `display: none;` |
 | `clickable` | `cursor: pointer;` |
 | `noPointerEvents` | `pointer-events: none;` |
-| `overlay` | Creates a semi-transparent red overlay over a `<Div />`, may come in useful whe debugging layout. Accept a string with color name if you want something other than red.
+| `overlay` | Creates a semi-transparent red overlay over a `<Div />`, may come in useful when debugging layout. Accept a string with a color name if you want something other than red. |
 
 ## Media queries
 
 You can use CSS media queries with `<Div />`
 
-First you need to import styled-components's `ThemeProvider` and pass it a theme with `styledKitMediaQueries` key where you put your media queries. Query needs to have a name and a valid value. Here's an example:
+First, you need to import styled-components's `ThemeProvider` and pass it a theme with `styledKitMediaQueries` key where you put your media queries. Query needs to have a name and a valid value. Here's an example:
 
 ```js
 import { ThemeProvider } from 'styled-components'
@@ -171,7 +171,7 @@ function App() {
 }
 ```
 
-You can name toyr queries however you want. In this example, they're called "mobile" and "desktop", and now all Divs can accept props of same names.
+You can name your queries however you want. In this example, they're called "mobile" and "desktop", and now all Divs can accept props of the same names.
 
 `<Div desktop="flex-direction: column;" />` Simple CSS string
 `<Div desktop={{ flexDirection: 'column' }} />` Object notation (the same that `style` prop accepts)
