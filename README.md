@@ -6,6 +6,12 @@
 npm install styled-kit
 ```
 
+`styled-kit` depends on `styled-components`, so make sure you have that installed
+
+```bash
+npm install styled-components
+```
+
 ## Usage
 
 
@@ -173,9 +179,9 @@ function App() {
 
 You can name your queries however you want. In this example, they're called "mobile" and "desktop", and now all Divs can accept props of the same names.
 
-`<Div desktop="flex-direction: column;" />` Simple CSS string
-`<Div desktop={{ flexDirection: 'column' }} />` Object notation (the same that `style` prop accepts)
-`<Div desktop={{ column: true }} />` Object notation unsing Div's properties
+`<Div desktop="flex-direction: column;" />` Simple CSS string  
+`<Div desktop={{ flexDirection: 'column' }} />` Object notation (the same that `style` prop accepts)  
+`<Div desktop={{ column: true }} />` Object notation unsing Div's properties  
 `<Div desktop={['column']} />` Array notation, works with Div's boolean properties only
 
 All results in the same `flex-direction: column;` CSS getting attached to `<Div />` on screens at least 768px wide
