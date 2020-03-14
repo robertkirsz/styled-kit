@@ -159,7 +159,7 @@ First, you need to import styled-components's `ThemeProvider` and pass it a them
 
 ```js
 import { ThemeProvider } from 'styled-components'
-import { createQueries } from 'styled-kit/Div'
+import Div, { createQueries } from 'styled-kit/Div'
 
 const styledKitMediaQueries = createQueries({
   mobile: '(max-width: 767px)',
@@ -188,4 +188,4 @@ All results in the same `flex-direction: column;` CSS getting attached to `<Div 
 
 Enjoy! 💙
 
-[![npm version](https://img.shields.io/npm/v/styled-kit.svg?color=blue)](https://www.npmjs.com/package/styled-kit) ![Bundle size](https://img.shields.io/bundlephobia/min/styled-kit.svg?color=blue) [![GitHub license](https://img.shields.io/npm/l/styled-kit.svg?color=blue)](https://github.com/robertkirsz/styled-kit/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/styled-kit.svg?color=blue)](https://www.npmjs.com/package/styled-kit) [![GitHub license](https://img.shields.io/npm/l/styled-kit.svg?color=blue)](https://github.com/robertkirsz/styled-kit/blob/master/LICENSE)

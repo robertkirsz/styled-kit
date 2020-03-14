@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components'
-
 import stuff from 'stuff'
-
-// TODO: move here
-import { memoize, camelToKebab } from 'utils'
+import memoize from 'utils/memoize'
+import camelToKebab from 'utils/camelToKebab'
 
 const stuffKeys = Object.keys(stuff)
 const isStuffKey = memoize(item => stuffKeys.includes(item))

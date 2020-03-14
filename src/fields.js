@@ -1,4 +1,4 @@
-const textParser = value => (value === '' ? '' : isNaN(value) ? value : parseInt(value))
+import parseText from 'utils/parseText'
 
 export default [
   {
@@ -13,10 +13,10 @@ export default [
     ]
   },
   { name: 'wraps', type: 'checkbox', displayName: 'flex-wrap', initialValue: false },
-  { name: 'width', type: 'text', initialValue: 300, parser: textParser },
-  { name: 'height', type: 'text', initialValue: 300, parser: textParser },
-  { name: 'margin', type: 'text', initialValue: '', parser: textParser },
-  { name: 'padding', type: 'text', initialValue: 8, parser: textParser },
+  { name: 'width', type: 'text', initialValue: 300, parser: parseText },
+  { name: 'height', type: 'text', initialValue: 300, parser: parseText },
+  { name: 'margin', type: 'text', initialValue: '', parser: parseText },
+  { name: 'padding', type: 'text', initialValue: 8, parser: parseText },
   { name: 'background', type: 'text', initialValue: '' },
   {
     name: 'justify-content',
@@ -80,14 +80,14 @@ export default [
       { value: 'sticky', label: 'sticky' }
     ]
   },
-  { name: 'square', type: 'text', initialValue: '', parser: textParser },
-  { name: 'listTop', type: 'text', initialValue: '', parser: textParser },
-  { name: 'listRight', type: 'text', initialValue: '', parser: textParser },
-  { name: 'listBottom', type: 'text', initialValue: '', parser: textParser },
-  { name: 'listLeft', type: 'text', initialValue: 4, parser: textParser },
-  { name: 'top', type: 'text', initialValue: '', parser: textParser },
-  { name: 'right', type: 'text', initialValue: '', parser: textParser },
-  { name: 'bottom', type: 'text', initialValue: '', parser: textParser },
-  { name: 'left', type: 'text', initialValue: '', parser: textParser },
-  { name: 'z', type: 'text', displayName: 'z-index', initialValue: '', parser: textParser }
+  { name: 'square', type: 'text', initialValue: '', parser: parseText },
+  { name: 'listTop', type: 'text', initialValue: '', parser: parseText },
+  { name: 'listRight', type: 'text', initialValue: '', parser: parseText },
+  { name: 'listBottom', type: 'text', initialValue: '', parser: parseText },
+  { name: 'listLeft', type: 'text', initialValue: 4, parser: parseText },
+  { name: 'top', type: 'text', initialValue: '', parser: parseText },
+  { name: 'right', type: 'text', initialValue: '', parser: parseText },
+  { name: 'bottom', type: 'text', initialValue: '', parser: parseText },
+  { name: 'left', type: 'text', initialValue: '', parser: parseText },
+  { name: 'z', type: 'text', displayName: 'z-index', initialValue: '', parser: parseText }
 ]
