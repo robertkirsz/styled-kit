@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, wait } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 
 import Slider from './Slider'
 
@@ -69,7 +69,7 @@ describe('<Slider />', () => {
       </Slider>
     )
 
-    await wait(() => {
+    await waitFor(() => {
       expect(mockCallback).toBeCalledTimes(1)
       expect(mockCallback.mock.calls.length).toBe(1)
       expect(mockCallback.mock.calls[0][0]).toBe(1)
@@ -82,7 +82,7 @@ describe('<Slider />', () => {
       </Slider>
     )
 
-    await wait(() => {
+    await waitFor(() => {
       expect(mockCallback).toBeCalledTimes(2)
       expect(mockCallback.mock.calls.length).toBe(2)
       expect(mockCallback.mock.calls[1][0]).toBe(2)
