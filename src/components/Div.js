@@ -7,7 +7,6 @@ function createCss(props) {
   return (previous, current) => {
     const stuffValue = stuff[current]
     const propValue = props[current]
-
     if (typeof stuffValue === 'string' && propValue) return `${previous}${stuffValue}`
     if (typeof stuffValue === 'function') return `${previous}${stuffValue(propValue, props)}`
     return previous
@@ -36,7 +35,6 @@ function doMediaQueriesStuff(props = {}) {
         ...all,
         [query]: declaration.reduce((all, property) => {
           const stuffProperty = stuff[property]
-
           if (typeof stuffProperty !== 'string') return all
           return `${all}${stuffProperty}`
         }, '')
@@ -48,7 +46,7 @@ function doMediaQueriesStuff(props = {}) {
       [query]: Object.keys(declaration).reduce((all, property) => {
         const value = declaration[property]
         const stuffProperty = stuff[property]
-
+        if (value === false) return all
         if (!stuffProperty) return `${all}${camelToKebab(property)}:${value};`
         return `${all}${typeof stuffProperty === 'function' ? stuffProperty(value, props) : stuffProperty}`
       }, '')
