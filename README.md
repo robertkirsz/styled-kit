@@ -159,7 +159,8 @@ First, you need to import styled-components's `ThemeProvider` and pass it a them
 
 ```js
 import { ThemeProvider } from 'styled-components'
-import Div, { createQueries } from 'styled-kit/Div'
+import Div from 'styled-kit/Div'
+import createQueries from 'styled-kit/utils/createQueries'
 
 const styledKitMediaQueries = createQueries({
   mobile: '(max-width: 767px)',

@@ -49,40 +49,45 @@ export default function DivPlayground() {
 
   return (
     <Container padding={20}>
-      <Div square={120} small="background: red;" medium={['column']} debug>
-        <Item />
-        <Item />
-        <Item />
-      </Div>
       <Row small={{ listTop: 40 }}>
-        <Column as="form" column small={12} large={4} listTop={16} onSubmit={form.handleSubmit}>
-          <Div column>
-            <Field {...get('flex-direction')} />
-            <Field {...get('wraps')} />
+        <Column as="form" small={12} large={4} listLeft={16} onSubmit={form.handleSubmit}>
+          <Div column listTop={16}>
+            <Div column>
+              <Field {...get('flex-direction')} />
+              <Field {...get('wraps')} />
+              <Field {...get('justify-content')} />
+              <Field {...get('align-content')} />
+              <Field {...get('align-items')} />
+            </Div>
+
+            <Div column>
+              <Field {...get('position')} />
+              <Field {...get('top')} />
+              <Field {...get('right')} />
+              <Field {...get('left')} />
+              <Field {...get('bottom')} />
+              <Field {...get('z')} />
+            </Div>
           </Div>
 
-          <Div column>
-            <Field {...get('justify-content')} />
-            <Field {...get('align-content')} />
-            <Field {...get('align-items')} />
-          </Div>
+          <Div column listTop={16}>
+            <Div column>
+              <Field {...get('width')} />
+              <Field {...get('height')} />
+              <Field {...get('margin')} />
+              <Field {...get('padding')} />
+            </Div>
 
-          <Div column>
-            <Field {...get('position')} />
-            <Field {...get('top')} />
-            <Field {...get('right')} />
-            <Field {...get('left')} />
-            <Field {...get('bottom')} />
-            <Field {...get('z')} />
-            <Field {...get('width')} />
-            <Field {...get('height')} />
-            <Field {...get('margin')} />
-            <Field {...get('padding')} />
-            <Field {...get('background')} />
-            <Field {...get('listLeft')} />
-            <Field {...get('listRight')} />
-            <Field {...get('listTop')} />
-            <Field {...get('listBottom')} />
+            <Div column>
+              <Field {...get('background')} />
+            </Div>
+
+            <Div column>
+              <Field {...get('listLeft')} />
+              <Field {...get('listRight')} />
+              <Field {...get('listTop')} />
+              <Field {...get('listBottom')} />
+            </Div>
           </Div>
         </Column>
 
@@ -101,8 +106,8 @@ export default function DivPlayground() {
         </Column>
       </Row>
 
-      <Row small={{ listTop: 40 }}>
-        <Column small={12} medium={4} overlay="yellow">
+      <Row small={{ listTop: 40 }} overlay="yellow">
+        <Column small={12} medium={4}>
           <Div square={120} itemsCenter justifyAround overlay="blue">
             <Item />
             <Item />
@@ -112,8 +117,8 @@ export default function DivPlayground() {
           <pre css="font-size: 10px;">{`<Div itemsCenter justifyAround>\n  <Item />\n  <Item />\n  <Item />\n</Div>`}</pre>
         </Column>
 
-        <Column small={12} medium={4} overlay="yellow">
-          <Div square={120} listLeft>
+        <Column small={12} medium={4}>
+          <Div square={120} listLeft overlay="blue">
             <Item circle flexNone selfStart />
             <Item flex={1} />
           </Div>
@@ -126,14 +131,14 @@ export default function DivPlayground() {
 }
 
 const Wrapper = styled.div`
-  background: linear-gradient(to right, peachpuff 4px, transparent 4px) 0 0,
-    linear-gradient(to right, peachpuff 4px, transparent 4px) 0 100%,
-    linear-gradient(to left, peachpuff 4px, transparent 4px) 100% 0,
-    linear-gradient(to left, peachpuff 4px, transparent 4px) 100% 100%,
-    linear-gradient(to bottom, peachpuff 4px, transparent 4px) 0 0,
-    linear-gradient(to bottom, peachpuff 4px, transparent 4px) 100% 0,
-    linear-gradient(to top, peachpuff 4px, transparent 4px) 0 100%,
-    linear-gradient(to top, peachpuff 4px, transparent 4px) 100% 100%;
+  background: linear-gradient(to right, peachpuff 2px, transparent 2px) 0 0,
+    linear-gradient(to right, peachpuff 2px, transparent 2px) 0 100%,
+    linear-gradient(to left, peachpuff 2px, transparent 2px) 100% 0,
+    linear-gradient(to left, peachpuff 2px, transparent 2px) 100% 100%,
+    linear-gradient(to bottom, peachpuff 2px, transparent 2px) 0 0,
+    linear-gradient(to bottom, peachpuff 2px, transparent 2px) 100% 0,
+    linear-gradient(to top, peachpuff 2px, transparent 2px) 0 100%,
+    linear-gradient(to top, peachpuff 2px, transparent 2px) 100% 100%;
 
   background-repeat: no-repeat;
   background-size: 20px 20px;

@@ -7,7 +7,7 @@ import { Container, Row, Column } from 'components/Grid'
 import ScreenSizeInfo from 'examples/helpers/ScreenSizeInfo'
 import GridHelper from 'examples/helpers/GridHelper'
 
-export default function(props) {
+export default function (props) {
   return (
     <Div column relative padding="24px 0" {...props}>
       <ScreenSizeInfo justifyCenter itemsCenter />

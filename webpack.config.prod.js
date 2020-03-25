@@ -3,7 +3,9 @@ module.exports = {
   entry: {
     Div: 'components/Div',
     HeightTransition: 'components/HeightTransition',
-    'utils/withUnit': 'utils/withUnit'
+    'utils/withUnit': 'utils/withUnit',
+    'utils/isDivProp': 'utils/isDivProp',
+    'utils/createQueries': 'utils/createQueries'
   },
   output: {
     path: __dirname,
