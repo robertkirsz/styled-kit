@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from 'styles'
-import { createQueries } from 'components/Div'
+import createQueries from 'utils/createQueries'
 import DivExample from 'examples/DivExample'
 
 export const styledKitMediaQueries = createQueries({
@@ -15,7 +15,6 @@ function App() {
   return (
     <>
       <GlobalStyles />
-
       <ThemeProvider theme={{ styledKitMediaQueries }}>
         <DivExample />
       </ThemeProvider>
