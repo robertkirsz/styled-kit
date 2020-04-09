@@ -84,6 +84,13 @@ export default {
   left: value => `left: ${withUnit(value)};`,
   z: value => `z-index: ${value};`,
   // Text
+  font: value => `font: ${value};` /* Tested */,
+  fontFamily: value => `font-family: ${value};` /* Tested */,
+  fontSize: value => `font-size: ${withUnit(value)};` /* Tested */,
+  fontWeight: value => `font-weight: ${value};` /* Tested */,
+  lineHeight: value => `line-height: ${value};` /* Tested */,
+  letterSpacing: value => `letter-spacing: ${withUnit(value)};` /* Tested */,
+  textAlign: value => `text-align: ${value};` /* Tested */,
   color: value => `color: ${value};` /* Tested */,
   // Lists
   listLeft: value => `> *:not(:first-child) { margin-left: ${withUnit(value === true ? 8 : value)}; }`,

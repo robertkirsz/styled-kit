@@ -122,8 +122,15 @@ describe('Snapshot', () => {
   it('Matches', () => {
     const samples = {
       background: 'pink',
-      'background-image': 'cat.jpg',
-      border: '2px solid pink'
+      backgroundImage: 'cat.jpg',
+      border: '2px solid pink',
+      font: '300 16px/1.2 sans-serif',
+      fontFamily: 'sans-serif',
+      fontSize: 16,
+      fontWeight: 300,
+      lineHeight: 1.2,
+      letterSpacing: 2,
+      textAlign: 'center'
     }
 
     const props = Object.keys(stuff).reduce((result, prop) => {

@@ -121,6 +121,19 @@ Instead of using `paddingTop` or `marginLeft`, you can also use abbreviated `pTo
 | `left={X}` | `left: {X};` |
 | `z={X}` | `z-index: {X};` |
 
+### Text
+
+| Prop | CSS |
+| --- | --- |
+| `font={X}` | `font: {X};` |
+| `fontFamily={X}` | `font-family: {X};` |
+| `fontSize={X}` | `font-size: {X};` |
+| `fontWeight={X}` | `font-weight: {X};` |
+| `lineHeight={X}` | `line-height: {X};` |
+| `letterSpacing={X}` | `letter-spacing: {X};` |
+| `textAlign={X}` | `text-align: {X};` |
+| `color={X}` | `color: {X};` |
+
 ### Lists
 
 Add margin to every child except first or last one, depending on the chosen direction. Used to add space between child items.
@@ -180,9 +193,9 @@ function App() {
 
 You can name your queries however you want. In this example, they're called "mobile" and "desktop", and now all Divs can accept props of the same names.
 
-`<Div desktop="flex-direction: column;" />` Simple CSS string  
-`<Div desktop={{ flexDirection: 'column' }} />` Object notation (the same that `style` prop accepts)  
-`<Div desktop={{ column: true }} />` Object notation unsing Div's properties  
+`<Div desktop="flex-direction: column;" />` Simple CSS string
+`<Div desktop={{ flexDirection: 'column' }} />` Object notation (the same that `style` prop accepts)
+`<Div desktop={{ column: true }} />` Object notation unsing Div's properties
 `<Div desktop={['column']} />` Array notation, works with Div's boolean properties only
 
 All results in the same `flex-direction: column;` CSS getting attached to `<Div />` on screens at least 768px wide
