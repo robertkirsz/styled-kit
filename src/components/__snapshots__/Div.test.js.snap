@@ -72,6 +72,7 @@ exports[`Snapshot Matches 1`] = `
   letter-spacing: 2px;
   text-align: center;
   color: 8;
+  overflow: auto;
   position: absolute;
   top: 0;
   right: 0;
@@ -186,6 +187,7 @@ exports[`Snapshot Matches 1`] = `
     letter-spacing: 2px;
     text-align: center;
     color: 8;
+    overflow: auto;
     position: absolute;
     top: 0;
     right: 0;
@@ -260,6 +262,7 @@ exports[`Snapshot Matches 1`] = `
   fontWeight={300}
   height={8}
   letterSpacing={2}
+  overflow="auto"
   radius={8}
   width={8}
   z={8}

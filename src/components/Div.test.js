@@ -130,12 +130,15 @@ describe('Snapshot', () => {
       fontWeight: 300,
       lineHeight: 1.2,
       letterSpacing: 2,
-      textAlign: 'center'
+      textAlign: 'center',
+      overflow: 'auto'
     }
 
     const props = Object.keys(stuff).reduce((result, prop) => {
       // Ignore shorthand helpers as they duplicate CSS in snapshot
       if (['mTop', 'mRight', 'mBottom', 'mLeft', 'pTop', 'pRight', 'pBottom', 'pLeft'].includes(prop)) return result
+      // Ignore these column/list helper props for the same reason
+      if (['columnTop', 'columnBottom'].includes(prop)) return result
       return { ...result, [prop]: typeof stuff[prop] === 'function' ? samples[prop] || 8 : true }
     }, {})
 

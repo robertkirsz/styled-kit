@@ -147,6 +147,14 @@ Add margin to every child except first or last one, depending on the chosen dire
 
 `X` is optional here and is 8px by default
 
+You can also use `columnTop` and `columnBottom`. They work the same as `listTop` and `listBottom`, but also come with `flex-direction: column;`.
+
+### Other
+
+| Prop | CSS |
+| --- | --- |
+| `overflow={X}` | `overflow: {X};` |
+
 ### Helpers
 
 | Prop | CSS |

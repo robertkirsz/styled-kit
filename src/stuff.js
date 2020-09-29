@@ -97,6 +97,12 @@ export default {
   listRight: value => `> *:not(:last-child) { margin-right: ${withUnit(value === true ? 8 : value)}; }`,
   listTop: value => `> *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
   listBottom: value => `> *:not(:last-child) { margin-bottom: ${withUnit(value === true ? 8 : value)}; }`,
+  columnTop: value =>
+    `flex-direction: column; > *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
+  columnBottom: value =>
+    `flex-direction: column; > *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
+  // Other
+  overflow: value => `overflow: ${value};` /* Tested */,
   // Helpers
   layer: layerStyles,
   square: value => value !== '' && `width: ${withUnit(value)}; height: ${withUnit(value)};`,
