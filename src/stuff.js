@@ -100,7 +100,7 @@ export default {
   columnTop: value =>
     `flex-direction: column; > *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
   columnBottom: value =>
-    `flex-direction: column; > *:not(:first-child) { margin-top: ${withUnit(value === true ? 8 : value)}; }`,
+    `flex-direction: column; > *:not(:last-child) { margin-bottom: ${withUnit(value === true ? 8 : value)}; }`,
   // Other
   overflow: value => `overflow: ${value};` /* Tested */,
   // Helpers
