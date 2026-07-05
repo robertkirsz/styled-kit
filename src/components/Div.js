@@ -35,8 +35,8 @@ function doMediaQueriesStuff(props = {}) {
         ...all,
         [query]: declaration.reduce((all, property) => {
           const stuffProperty = stuff[property]
-          if (typeof stuffProperty !== 'string') return all
-          return `${all}${stuffProperty}`
+          if (!stuffProperty) return all
+          return `${all}${typeof stuffProperty === 'function' ? stuffProperty(true, props) : stuffProperty}`
         }, '')
       }
     }

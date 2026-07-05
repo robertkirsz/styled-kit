@@ -7,6 +7,6 @@ describe('memoize()', () => {
 
     memoized()
     memoized()
-    expect(func).toBeCalledTimes(1)
+    expect(func).toHaveBeenCalledTimes(1)
   })
 })

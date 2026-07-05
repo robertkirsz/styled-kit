@@ -112,9 +112,13 @@ describe('Media queries', () => {
   })
 
   it('As array', () => {
-    const result = renderer.create(<DivTest small={['column', 'itemsCenter']} />).toJSON()
+    const result = renderer.create(<DivTest small={['column', 'itemsCenter', 'listLeft']} />).toJSON()
     expect(result).toHaveStyleRule('flex-direction', 'column', { media: '(max-width: 200px)' })
     expect(result).toHaveStyleRule('align-items', 'center', { media: '(max-width: 200px)' })
+    expect(result).toHaveStyleRule('margin-left', '8px', {
+      media: '(max-width: 200px)',
+      modifier: '> *:not(:first-child)'
+    })
   })
 })
 
