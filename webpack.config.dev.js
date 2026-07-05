@@ -7,7 +7,9 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 1987,
-    stats: 'errors-only'
+    devMiddleware: {
+      stats: 'errors-only'
+    }
   },
   output: {
     path: `${__dirname}/demo`
