@@ -4,6 +4,9 @@
   "description": "A React UI components kit powered by styled-components",
   "author": "Robert Kirsz <robert.kirsz@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.15.0"
+  },
   "homepage": "http://robertkirsz.github.io/styled-kit",
   "repository": {
     "type": "git",
